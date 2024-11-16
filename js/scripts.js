@@ -38,7 +38,7 @@ function validatePassword(event) {
     event.preventDefault();
     var password = document.getElementById('password').value;
     var errorMsg = document.getElementById('error-msg');
-    var correctPassword = "zsx4b7y9"; // 设置您的秘密密码
+    var correctPassword = "obliv"; // 设置您的秘密密码
 
     if (password === correctPassword) {
         // 密码正确，跳转到成功页面
