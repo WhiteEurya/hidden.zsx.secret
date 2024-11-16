@@ -42,7 +42,7 @@ function validatePassword(event) {
 
     if (password === correctPassword) {
         // 密码正确，跳转到成功页面
-        window.location.href = "success.html";
+        window.location.href = "page/success.html";
     } else {
         // 密码错误，显示错误信息
         errorMsg.style.display = 'block';
