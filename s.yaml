@@ -17,7 +17,7 @@ services:
         handler: index.handler  # 函数入口
         memorySize: 128  # 内存大小
         timeout: 10  # 超时时间
-        codeUri: https://github.com/WhiteEurya/hidden.zsx.secret/  # GitHub 仓库地址
+        codeUri: https://github.com/WhiteEurya/hidden.zsx.secret.git  # GitHub 仓库地址
       triggers:
         - name: httpTrigger  # 触发器名称
           type: http  # HTTP 触发器
