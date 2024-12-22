@@ -9,7 +9,7 @@ export default function handler(req, res) {
             // 返回成功响应和跳转 URL
             res.status(200).json({
                 success: true,
-                redirectUrl: '/success.html', // 成功后跳转的页面
+                redirectUrl: 'pages/success.html', // 成功后跳转的页面
             });
         } else {
             // 返回错误响应
