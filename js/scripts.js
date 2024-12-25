@@ -36,11 +36,13 @@ window.addEventListener('click', (event) => {
 // 密码验证功能
 function validatePassword(event) {
     event.preventDefault();
+    var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
     var errorMsg = document.getElementById('error-msg');
-    var correctPassword = "zsx4b7y9"; // 设置您的秘密密码
+    var correctUsername = "ciallo";
+    var correctPassword = "0d000721"; // 设置您的秘密密码
 
-    if (password === correctPassword) {
+    if (password === correctPassword && username === correctUsername) {
         // 密码正确，跳转到成功页面
         window.location.href = "success.html";
     } else {
