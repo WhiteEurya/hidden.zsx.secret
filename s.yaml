@@ -1,0 +1,26 @@
+edition: 1.0.0
+name: github-deploy-test
+access: default  # 使用你配置的阿里云访问凭据
+
+services:
+  github-service:  # 服务名称
+    component: fc   # 阿里云函数计算组件
+    props:
+      region: cn-hangzhou  # 部署区域
+      service:
+        name: github-service  # 服务的名称
+        description: A service deployed from GitHub
+      function:
+        name: github-function  # 函数名称
+        description: A function deployed from GitHub
+        runtime: nodejs18  # 运行时环境
+        handler: index.handler  # 函数入口
+        memorySize: 128  # 内存大小
+        timeout: 10  # 超时时间
+        codeUri: https://github.com/WhiteEurya/hidden.zsx.secret  # GitHub 仓库地址
+      triggers:
+        - name: httpTrigger  # 触发器名称
+          type: http  # HTTP 触发器
+          config:
+            authType: anonymous  # 触发器认证方式
+            methods: [GET, POST]  # 支持的 HTTP 方法
