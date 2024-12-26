@@ -17,7 +17,7 @@ export default function handler(req, res) {
             // 返回错误响应
             res.status(401).json({
                 success: false,
-                message: '密码错误，请重试。',
+                message: '用户名或密码错误，请重试。',
             });
         }
     } else {
