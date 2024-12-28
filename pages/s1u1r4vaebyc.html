@@ -99,32 +99,34 @@
     }
 
     /* 淡入动画 */
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
+    .fade-in {
       opacity: 0;
+      animation: fadeIn 0.5s forwards ease-in-out
     }
-    to {
-      opacity: 1;
-    }
-  }
 
-  /* 淡出动画 */
-  .fade-out {
-    animation: fadeOut 0.5s ease-in-out;
-  }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
 
-  @keyframes fadeOut {
-    from {
+    /* 淡出动画 */
+    .fade-out {
       opacity: 1;
+      animation: fadeOut 0.5s forwards ease-in-out;
     }
-    to {
-      opacity: 0;
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
     }
-  }
 
   </style>
 </head>
@@ -411,7 +413,7 @@
       setTimeout(() => {
         isTransitioning = false;
       }, 500);
-    }, 500);
+    }, 505);
     }
   </script>
 </body>
