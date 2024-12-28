@@ -15,13 +15,13 @@
       background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
       color: #eaeaea;
       display: flex;
-      justify-content: center;
+      /* justify-content: center; */
       align-items: center;
       height: 100vh;
     }
 
     /* 问卷容器样式 */
-    .container {
+    .survey-container {
       background: rgba(20, 20, 20, 0.95);
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
@@ -34,7 +34,7 @@
     }
 
     /* 标题样式 */
-    .container h1 {
+    .survey-container h1 {
       font-size: 2.5em;
       color: #fff;
       margin-bottom: 30px;
@@ -71,7 +71,7 @@
 
     /* 响应式调整 */
     @media (max-width: 768px) {
-      .container h1 {
+      .survey-container h1 {
         font-size: 2em;
       }
 
@@ -127,6 +127,7 @@
       background-color : #1a1a1a;
       border-radius: 5px;
       box-sizing: border-box;
+      color: #eaeaea;
       font-size: 32px;
       outline: none;
       display: block;
@@ -158,7 +159,7 @@
         <img src="../assets/logo.png" alt="logo" height="54" width="250">
 
     </nav>
-  <div class="container">
+  <div class="survey-container">
     <h1>心理研究问卷</h1>
     <div id="question-container">
       <!-- 问题将由 JavaScript 动态填充 -->
