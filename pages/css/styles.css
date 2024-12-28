@@ -39,7 +39,7 @@ body {
 
 /* 二维码 */
 .QRcode {
-  flex: 3;
+  flex: 2;
   margin-top: -50px;
   display: flex;
   justify-content: center;
@@ -47,13 +47,25 @@ body {
   overflow: hidden;
 }
 
-/* 欢迎语 */
-.welcome {
+/* 感谢语 */
+.thanks {
   font-family: 'Brush Script MT', 'Brush Script Std', cursive, sans-serif;
   margin-top: 50px;
   justify-content: center;
   align-items: center;
   padding: 0px; /* 添加内边距以增加可读性 */
   color: #ffffff; /* 文本颜色，根据您的页面配色方案进行调整 */
-  font-size: 5em; /* 字体大小略大于普通文本 */
+  font-size: 4em; /* 字体大小略大于普通文本 */
+}
+
+/* 欢迎语 */
+.welcome {
+  flex: 1;
+  font-family: 'Brush Script MT', 'Brush Script Std', cursive, sans-serif;
+  margin-top: 10%;
+  justify-content: left;
+  align-items: center;
+  padding: 0px; /* 添加内边距以增加可读性 */
+  color: #ffffff; /* 文本颜色，根据您的页面配色方案进行调整 */
+  font-size: 4em; /* 字体大小略大于普通文本 */
 }
