@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mystic Survey</title>
+  <title>众生相认知调查</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
   <style>
     /* 页面基本样式 */
     body {
@@ -69,17 +71,19 @@
 
     /* 输入框样式 */
     .input {
-      width: 600px;
-      height: 90px;
+      width: 100%;
+      height: 20%;
       padding: auto;
       margin: 0;
       margin-top: 30px;
-      border: 1px solid #ccc;
+      border: 1px solid #434343;
+      border-bottom: 10% solid #434343;
+      background-color : #1a1a1a;
       border-radius: 5px;
       box-sizing: border-box;
       font-size: 32px;
       outline: none;
-      display: none;
+      display: block;
     }
 
     /* 响应式调整 */
@@ -97,9 +101,62 @@
         padding: 15px;
       }
     }
+
+    /* 淡入动画 */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.5s forwards ease-in-out
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 淡出动画 */
+    .fade-out {
+      opacity: 1;
+      animation: fadeOut 0.5s forwards ease-in-out;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: #fff;
+    background: linear-gradient(45deg, #6a5acd, #8a2be2);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .submit-btn:hover {
+    background: linear-gradient(45deg, #8a2be2, #6a5acd);
+    box-shadow: 0 0 15px #8a2be2;
+  }
+
   </style>
 </head>
 <body>
+    <nav class="navbar">
+        <img src="../assets/logo.png" alt="logo" height="54" width="250">
+    </nav>
   <div class="container">
     <h1>心理研究问卷</h1>
     <div id="question-container">
@@ -108,7 +165,6 @@
       <button class="option" onclick="nextQuestion(0)">经常会忘记一些事情，影响到我的生活或工作。</button>
       <button class="option" onclick="nextQuestion(1)">偶尔会忘记，但对我来说没有太大困扰。</button>
     </div>
-    <input type="text" class="input" placeholder="请输入内容">
   </div>
 
   <script>
@@ -335,26 +391,11 @@
 
       //第20题  
       if (currentQuestionIndex == 20) {
-        const input = document.createElement("input");
-        input.type = currentQuestion.inputType;
-        input.placeholder = "请输入...";
-        input.style.width = "600px";
-        input.style.height = "70px";
-        input.style.padding = "auto";
-        input.style.margin = "0";
-        input.style.margintop = "30px";
-        input.style.border = "1px" 
-        input.style.solid = "#434343";
-        input.style.backgroundColor = "#1a1a1a";
-        input.style.borderRadius = "5px";
-        input.style.boxsizing = "border-box";
-        input.style.fontsize = "32px";
-        input.style.outline = "none";
-        input.style.display = "block";
-        input.classList.add("input");
-        questionContainer.appendChild(input);
-
-        const submitButton = document.createElement("button");
+        questionContainer.innerHTML = `
+        <p class="question" id="question-text">${currentQuestion.question}</p>
+        <input type="text" class="input" placeholder="请输入..." id="final-answer">
+        <button class="submit-btn" onclick="submitFinalAnswer()">提交</button>
+      `;
         
       } else {
         // 动态生成新选项
@@ -365,6 +406,16 @@
         button.onclick = () => nextQuestion(index);
         questionContainer.appendChild(button);
       });
+      }
+    }
+
+    function submitFinalAnswer(event) {
+      const finalAnswer = document.getElementById("final-answer").value;
+      if (finalAnswer == "遗忘") {
+        window.location.href = "joinUs.html";
+      }
+      else {
+        window.location.href = "joinUs.html";
       }
     }
   </script>
