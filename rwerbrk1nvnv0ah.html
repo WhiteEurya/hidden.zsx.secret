@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>反抗组织论坛 - 首页</title>
+  <style>
+    /* 公共样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #1a1a1a;
+      color: #e6e6e6;
+    }
+
+    .header {
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      color: #ff4d4d;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: #4caf50;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .announcement {
+      background-color: #222;
+      border: 1px solid #444;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .announcement h3 {
+      margin: 0;
+      color: #ff4d4d;
+    }
+
+    .announcement p {
+      margin: 10px 0 0;
+    }
+
+    .post {
+      background-color: #222;
+      border: 1px solid #444;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .post:hover {
+      background-color: #333;
+    }
+
+    .post-header {
+      font-size: 16px;
+      font-weight: bold;
+      color: #4caf50;
+    }
+
+    .post-meta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- 页头 -->
+  <div class="header">
+    <h1>反抗组织论坛</h1>
+  </div>
+
+  <!-- 主容器 -->
+  <div class="container">
+    <!-- 管理员公告区 -->
+    <div id="announcement-section">
+      <div class="section-title">管理员公告区</div>
+      <div class="announcement">
+        <h3>【紧急】今晚的行动计划</h3>
+        <p>所有成员注意，集合时间为午夜。请务必带齐装备，具体坐标将在暗网频道发布。</p>
+      </div>
+      <div class="announcement">
+        <h3>【更新】隐秘通道的入口</h3>
+        <p>新的线索已经发布，请参考之前的行动日志，并解密后续内容。</p>
+      </div>
+    </div>
+
+    <!-- 发帖区 -->
+    <div id="post-section">
+      <div class="section-title">发帖区</div>
+      <div class="post" onclick="navigateToThread(1)">
+        <div class="post-header">【用户A】昨晚的行动成功了吗？</div>
+        <div class="post-meta">时间：2024-12-27 10:30</div>
+      </div>
+      <div class="post" onclick="navigateToThread(2)">
+        <div class="post-header">【用户B】关于通道入口的信息</div>
+        <div class="post-meta">时间：2024-12-27 09:15</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 导航到帖子详情页
+    function navigateToThread(threadId) {
+      // 保存帖子 ID 到 LocalStorage，用于详情页加载
+      localStorage.setItem("currentThreadId", threadId);
+      window.location.href = "thread.html"; // 跳转到帖子详情页
+    }
+  </script>
+</body>
+</html>

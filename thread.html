@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>反抗组织论坛 - 帖子详情</title>
+  <style>
+    /* 公共样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #1a1a1a;
+      color: #e6e6e6;
+    }
+
+    .header {
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      color: #ff4d4d;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .thread {
+      background-color: #222;
+      border: 1px solid #444;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .thread-header {
+      font-size: 18px;
+      font-weight: bold;
+      color: #4caf50;
+      margin-bottom: 10px;
+    }
+
+    .thread-meta {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 15px;
+    }
+
+    .comment {
+      display: flex;
+      margin-bottom: 15px;
+      padding: 15px;
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 5px;
+    }
+
+    .comment .avatar {
+      width: 50px;
+      height: 50px;
+      background-color: #333;
+      border-radius: 50%;
+      margin-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .comment .content {
+      flex: 1;
+    }
+
+    .comment .username {
+      font-weight: bold;
+      color: #4caf50;
+      margin-bottom: 5px;
+    }
+
+    .comment .text {
+      font-size: 14px;
+      color: #e6e6e6;
+    }
+
+    .reply-box {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #222;
+      border: 1px solid #444;
+      border-radius: 5px;
+    }
+
+    .reply-box textarea {
+      width: 100%;
+      height: 100px;
+      background-color: #1a1a1a;
+      color: #e6e6e6;
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .reply-box button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #1a1a1a;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .reply-box button:hover {
+      background-color: #ff4d4d;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 页头 -->
+  <div class="header">
+    <h1>反抗组织论坛</h1>
+  </div>
+
+  <!-- 主容器 -->
+  <div class="container" id="thread-container">
+    <!-- 帖子详情内容将由 JavaScript 动态填充 -->
+  </div>
+
+  <script>
+    // 模拟帖子数据
+    const threads = {
+      1: {
+        title: "【用户A】昨晚的行动成功了吗？",
+        meta: "时间：2024-12-27 10:30",
+        comments: [
+          {
+            username: "用户A",
+            text: "大家有没有收到行动结果的通知？",
+          },
+          {
+            username: "用户C",
+            text: "行动似乎失败了，我们可能被发现了。",
+          },
+        ],
+      },
+      2: {
+        title: "【用户B】关于通道入口的信息",
+        meta: "时间：2024-12-27 09:15",
+        comments: [
+          {
+            username: "用户B",
+            text: "我发现了一个新的入口线索，但需要进一步验证。",
+          },
+          {
+            username: "用户D",
+            text: "可以分享具体位置吗？",
+          },
+        ],
+      },
+    };
+
+    // 加载帖子详情
+    function loadThread() {
+      const threadId = localStorage.getItem("currentThreadId");
+      const thread = threads[threadId];
+      const container = document.getElementById("thread-container");
+
+      if (!thread) {
+        container.innerHTML = "<p>帖子不存在！</p>";
+        return;
+      }
+
+      // 标题和元信息
+      container.innerHTML = `
+        <div class="thread">
+          <div class="thread-header">${thread.title}</div>
+          <div class="thread-meta">${thread.meta}</div>
+        </div>
+      `;
+
+      // 楼层内容
+      thread.comments.forEach((comment) => {
+        container.innerHTML += `
+          <div class="comment">
+            <div class="avatar">${comment.username[0]}</div>
+            <div class="content">
+              <div class="username">${comment.username}</div>
+              <div class="text">${comment.text}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      // 回复框
+      container.innerHTML += `
+        <div class="reply-box">
+          <textarea placeholder="写下你的回复..."></textarea>
+          <button onclick="handleReply()">发送</button>
+        </div>
+      `;
+    }
+
+    // 发送按钮功能：提示权限不足
+    function handleReply() {
+      alert("权限不够，无法发言");
+    }
+
+    // 在页面加载时调用
+    loadThread();
+  </script>
+</body>
+</html>
