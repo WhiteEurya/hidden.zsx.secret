@@ -156,6 +156,7 @@
 <body>
     <nav class="navbar">
         <img src="../assets/logo.png" alt="logo" height="54" width="250">
+
     </nav>
   <div class="container">
     <h1>心理研究问卷</h1>
@@ -353,16 +354,27 @@
     ];
 
     let currentQuestionIndex = 0; // 当前问题索引
+    let isTransitioning = false;
 
     // 切换到下一问题
     function nextQuestion(selectedOptionIndex) {
+
+      // 获取容器和问题文字元素
+      if (isTransitioning) return;
+      const questionContainer = document.getElementById("question-container");
+      const questionText = document.getElementById("question-text");
+
+      isTransitioning = true;
+      questionContainer.classList.remove("fade-in");
+      questionContainer.classList.add("fade-out");
+
+      setTimeout(() => {
+
       const lastQuestion = surveyData[currentQuestionIndex];
       const lastOption = lastQuestion.options[selectedOptionIndex].nextQuestion
       currentQuestionIndex = lastOption;
 
-      // 获取容器和问题文字元素
-      const questionContainer = document.getElementById("question-container");
-      const questionText = document.getElementById("question-text");
+
 
       // 如果问卷结束，显示感谢信息
       if (currentQuestionIndex >= surveyData.length) {
@@ -399,14 +411,20 @@
         
       } else {
         // 动态生成新选项
-      currentQuestion.options.forEach((option, index) => {
-        const button = document.createElement("button");
-        button.className = "option";
-        button.innerText = option.text;
-        button.onclick = () => nextQuestion(index);
-        questionContainer.appendChild(button);
-      });
+        currentQuestion.options.forEach((option, index) => {
+          const button = document.createElement("button");
+          button.className = "option";
+          button.innerText = option.text;
+          button.onclick = () => nextQuestion(index);
+          questionContainer.appendChild(button);
+        });
       }
+      questionContainer.classList.remove("fade-out");
+      questionContainer.classList.add("fade-in");
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 500);
+    }, 505);
     }
 
     function submitFinalAnswer(event) {
