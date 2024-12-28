@@ -1,49 +1,122 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invisible Memory</title>
-    <!-- 引入Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora&display=swap" rel="stylesheet">
-    <!-- 引入Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 引入CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- 图标 -->
-    <link rel="shortcut icon" href="assets/icon.png" type="image/x-icon">
+  <!-- 图标 -->
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>感谢您的参与</title>
+  <style>
+    /* 主导航栏 */
+    .navbar {
+      width: 100%;
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+      text-align: left;
+      color: #ffffff;
+    }
+
+    /* 通用样式 */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #0d0d0d; /* 深黑背景 */
+      color: #e6e6e6; /* 浅灰文字 */
+      display: block;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .container {
+      justify-self: center;
+      text-align: center;
+      background: rgba(20, 20, 20, 0.95); /* 半透明黑背景 */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      padding: 40px;
+      max-width: 400px;
+      margin: 1%;
+      height: 100% - 30px;
+      width: 90%;
+    }
+
+    .container h1 {
+      font-size: 26px;
+      color: #fff; /* 纯白标题 */
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 发光效果 */
+    }
+
+    .container p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 20px 0;
+      color: #b3b3b3; /* 浅灰文字 */
+    }
+
+    .qr-code {
+      margin: 20px 0;
+      padding: 15px;
+      background: #1a1a1a; /* 深灰背景 */
+      border-radius: 10px;
+      border: 1px solid #333;
+      display: inline-block;
+    }
+
+    .qr-code img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .join-us {
+      font-size: 22px;
+      color: #ff6a00; /* 橙色文字 */
+      margin-top: 20px;
+      text-shadow: 0 0 15px rgba(255, 105, 0, 0.8); /* 发光效果 */
+      font-weight: bold;
+    }
+
+    /* 响应式适配 */
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      .container h1 {
+        font-size: 22px;
+      }
+
+      .container p {
+        font-size: 14px;
+      }
+
+      .join-us {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- 主导航栏 -->
-    <nav class="navbar">
-        <img src="assets/logo.png" alt="logo" height="54" width="250">
-    </nav>
+  <!-- 主导航栏 -->
+  <nav class="navbar">
+      <img src="../assets/logo.png" alt="logo" height="54" width="250">
+  </nav>
 
-    <!--感谢语-->
-    <div class="thanks">
-        <p>感谢您抽出宝贵的时间填写我们的问卷</p>
-        <p>您的反馈对我们非常重要</p>
+  <div class="container">
+    <h1>感谢您为问卷做出的贡献！</h1>
+    <p>您的支持是我们前进的动力，期待我们一起创造更多可能。</p>
+    
+    <!-- 二维码展示 -->
+    <div class="qr-code">
+      <a href="../assets/poem.png">
+      <img src="../assets/QRcode.jpg" alt="点击进入详细信息">
+      </a>
     </div>
 
-
-    <div class="main-container">
-        <!--二维码-->
-        <section id="QRcode" class="QRcode">
-            <a href="assets/poem.png">
-                <img src="assets/QRcode.jpg" alt="点击进入详细信息" style="width: 100%; height: 100%; object-fit: cover;">
-            </a>
-        </section>
-
-        <!-- 欢迎语 -->
-        <div class="welcome">
-            <p>加入我们</p>
-        </div>
-        
-    </div>
-
-    <!-- 引入JavaScript -->
-    <script>
-
-    </script>
+    <!-- 加入我们标语 -->
+    <div class="join-us">加入我们</div>
+  </div>
 </body>
 </html>
