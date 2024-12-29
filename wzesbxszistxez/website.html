@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link rel="stylesheet" href="css/zxs_styles.css">
+  <title>众生相心理研究中心</title>
+
+</head>
+<body class="particle-page">
+  <div id="transition-cover" style="display: none;"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a href="#home" id="home-link">主页</a>
+      <a href="#about" id="about-link">关于我们</a>
+      <a id = "next-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 第一屏 -->
+  <div class="section hero" id="home">
+    <canvas id="particle-bg"></canvas>
+    <h1>查询实验记录</h1>
+    <div class="search-box">
+      <input type="text" placeholder="输入记录编号...">
+      <button>&#x1F50E;</button>
+    </div>
+    <p>Memory Etnernal, Mind Unbound.</p>
+    <div class="scroll-down">关于我们 ↓</div>
+  </div>
+
+  <!-- 介绍 -->
+  <div class="section about" id="about">
+    <h2>About Our Project</h2>
+    <p>
+      This is where you can provide a detailed introduction to your project. 
+      You can add as much content as you like, including text, images, and other media.
+    </p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta.</p>
+    <img src="https://via.placeholder.com/800x400" alt="Project Image">
+    <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Duis pharetra mi sit amet dictum congue. Vivamus lobortis magna ut interdum facilisis.</p>
+    <p>Phasellus feugiat est et turpis cursus, ut dapibus justo aliquet. Integer eget lorem nec augue placerat tincidunt non eu arcu.</p>
+  </div>
+
+  <!-- 引入粒子背景脚本 -->
+  <script src="js/particles.js"></script>
+
+  <!-- 滚动功能 -->
+  <script src="js/scroll.js"></script>
+
+  <!-- 滚动功能 -->
+  <script src='js/nextpage.js'></script>
+</body>
+</html>
