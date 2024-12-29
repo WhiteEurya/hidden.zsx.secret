@@ -17,8 +17,26 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, heroBounds.width / heroBounds.height, 0.1, 1000);
 camera.position.z = 300;
 
+// 动态生成圆形粒子纹理
+function createCircleTexture() {
+  const size = 64; // 纹理大小
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+
+  const ctx = canvas.getContext("2d");
+
+  // 绘制圆形
+  ctx.beginPath();
+  ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+  ctx.fillStyle = "white"; // 圆形颜色
+  ctx.fill();
+
+  return new THREE.CanvasTexture(canvas);
+}
+
 // 粒子系统
-const particlesCount = 1000; // 减少粒子数量，使其更稀疏
+const particlesCount = 1200; // 粒子数量
 const particlesGeometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particlesCount * 3);
 
@@ -41,18 +59,15 @@ for (let i = 0; i < particlesCount; i++) {
 
 particlesGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-// 创建圆形粒子纹理
-const particleTexture = new THREE.TextureLoader().load(
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAU0lEQVR42mNgoBAwUqifAQZggJYGRhZJYv3///9+MxB+FhZ+SEIXg9EIZxRGoIhKEL8P8PpGJZBfD8/8fphJmC4D8oHEAELZBEHkQNAAIMAGT5BgB5is5oAAAAAElFTkSuQmCC"
-); // Base64 的圆形纹理图片
+// 使用动态生成的圆形纹理
+const particleTexture = createCircleTexture();
 
-// 使用 PointsMaterial 设置粒子材质
 const particlesMaterial = new THREE.PointsMaterial({
-  size: 5, // 粒子尺寸
-  map: particleTexture, // 使用圆形纹理
+  size: 1, // 粒子尺寸
+  map: particleTexture, // 使用动态生成的圆形纹理
   color: 0xffffff, // 粒子颜色
   transparent: true,
-  opacity: 0.8, // 更淡的粒子
+  opacity: 0.7, // 更淡的粒子
   blending: THREE.AdditiveBlending, // 柔和叠加
   depthWrite: false, // 禁止深度写入以避免叠加问题
 });
