@@ -41,12 +41,20 @@ for (let i = 0; i < particlesCount; i++) {
 
 particlesGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
+// 创建圆形粒子纹理
+const particleTexture = new THREE.TextureLoader().load(
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAU0lEQVR42mNgoBAwUqifAQZggJYGRhZJYv3///9+MxB+FhZ+SEIXg9EIZxRGoIhKEL8P8PpGJZBfD8/8fphJmC4D8oHEAELZBEHkQNAAIMAGT5BgB5is5oAAAAAElFTkSuQmCC"
+); // Base64 的圆形纹理图片
+
+// 使用 PointsMaterial 设置粒子材质
 const particlesMaterial = new THREE.PointsMaterial({
-  size: 1.5, // 粒子尺寸
+  size: 5, // 粒子尺寸
+  map: particleTexture, // 使用圆形纹理
   color: 0xffffff, // 粒子颜色
   transparent: true,
-  opacity: 0.4, // 更淡的粒子
+  opacity: 0.8, // 更淡的粒子
   blending: THREE.AdditiveBlending, // 柔和叠加
+  depthWrite: false, // 禁止深度写入以避免叠加问题
 });
 
 const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
