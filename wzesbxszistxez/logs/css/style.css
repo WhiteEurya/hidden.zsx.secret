@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Roboto';
-    src: url('../../assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    src: url('../../../assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'MaShanZheng';
-    src: url('../../assets/fonts/MaShanZheng/MaShanZheng-Regular.ttf') format('truetype');
+    src: url('../../../assets/fonts/MaShanZheng/MaShanZheng-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -87,14 +87,14 @@
   /* 悬浮窗样式 */
   .modal {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%; /* 悬浮窗宽度 */
-    height: 70%; /* 悬浮窗高度 */
-    background: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
+    height: 80%; /* 悬浮窗高度 */
+    background: rgb(0, 0, 0); /* 黑色背景 */
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(22, 22, 22, 0.93);
     padding: 20px;
     z-index: 2; /* 悬浮窗位于背景层之上 */
     display: flex;
@@ -109,20 +109,26 @@
     visibility: visible; /* 确保布局正常 */
   }
 
-  /* 标题样式 */
-  .modal h2 {
-    font-size: 24px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 20px;
-    text-align: center;
-    position: relative;
-  }
-  
   /* 文档列表容器 */
   .document-list {
     flex: 1;
     overflow-y: auto;
     padding-right: 10px;
+  }
+  
+  /* 标题样式 */
+  .text-title p {
+    font-size: 24px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  /* 正文样式 */
+  .formal-text p {
+    padding-top: 10px;
+    font-size: 18px;
   }
   
   /* 单个文档样式 */
@@ -177,35 +183,6 @@
 
   .alert.hide {
     opacity: 0; /* 提示框透明 */
-  }
-  
-  /* 分页栏 */
-  .pagination {
-    overflow: auto;
-    display: inline-block;
-    justify-content: center;
-    margin-top: 10px;
-    white-space: nowrap;
-  }
-  
-  .pagination button {
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pagination button:hover {
-    background: #666;
-  }
-  
-  .pagination button.active {
-    background: #3498db;
-    color: #fff;
   }
 
   #particle-bg {
