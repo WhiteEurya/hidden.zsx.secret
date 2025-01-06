@@ -17,7 +17,7 @@ for (let i = totalDocuments; i > 0; i--) {
   documents.push({
     title: `Exp-${formattedDate}`, // 文档标题
     date: `上传日期: 20${year}-${month}-${day}`, // 文档的显示日期
-    type: i % 183 === 0 ? "valid" : "invalid", // 每 5 个文档设置为无权限
+    type: i % 1 === 0 ? "invalid" : "valid", // 每个文档都设置为无权限
   });
 }
 const documentList = document.getElementById("document-list");
