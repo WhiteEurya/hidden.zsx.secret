@@ -52,6 +52,11 @@
       color: #ff4d4d;
     }
 
+    .announcement a {
+      color: #222;
+      margin: 10px 0 0;
+    }
+
     .announcement p {
       margin: 10px 0 0;
     }
@@ -95,13 +100,9 @@
       <div class="section-title">管理员公告区</div>
 
       <div class="announcement">
-        <h3>【更新】当前最新线索</h3>
-        <p>众生相主页的登录账号为：OBLIV 密码为：OBLIV</p>
-      </div>
-
-      <div class="announcement">
-        <h3>【　　】　　　　　　　</h3>
-        <p>　　　　　</p>
+        <h3>【入站须知】</h3>
+        <p>本论坛以反抗众生相不人道实验为目的搭建，加入论坛前请仔细阅读下方论坛守则</p>
+        <p></p>
       </div>
 
       <div class="announcement">
@@ -116,8 +117,18 @@
       </div>
 
       <div class="announcement">
+        <h3>【更新】当前最新线索</h3>
+        <p>众生相主页的登录账号为：OBLIV 密码为：OBLIV</p>
+      </div>
+
+      <div class="announcement">
+        <h3>【　　】　　　　　　　</h3>
+        <a>看我作甚</a>
+      </div>
+
+      <div class="announcement">
         <h3>【公告】注册、登录与发帖功能正在维护中······</h3>
-        <p>有发现请联系邮箱 ciallo@0721.com</p>
+        <p>有发现请联系邮箱 yumo@ciallo.com</p>
       </div>
 
     </div>
@@ -125,19 +136,29 @@
     <!-- 发帖区 -->
     <div id="post-section">
       <div class="section-title">发帖区</div>
+      <div class="post" onclick="navigateToThread(5)">
+        <div class="post-header">置顶-【羽墨 [版主]】欢迎各位来到此处</div>
+        <div class="post-meta">时间：2024-01-16</div>
+      </div>
+
       <div class="post" onclick="navigateToThread(1)">
-        <div class="post-header">【用户A】我在昨天的文件中发现了一张图片！</div>
-        <div class="post-meta">时间：2025-01-02 10:30</div>
+        <div class="post-header">【卡窗】我在昨天的文件中发现了一张图片！</div>
+        <div class="post-meta">时间：2024-04-14</div>
       </div>
 
       <div class="post" onclick="navigateToThread(2)">
-        <div class="post-header">【用户B】我发现组织介绍视频的音频有猫腻</div>
-        <div class="post-meta">时间：2024-12-27 09:15</div>
+        <div class="post-header">【番茄虾头面】不对，我好像发现了一个奇怪的地方。我先去试试，看看对不对</div>
+        <div class="post-meta">时间：2024-02-15</div>
       </div>
 
       <div class="post" onclick="navigateToThread(3)">
-        <div class="post-header">【用户E】我在之前的文件中找到了一个博客</div>
-        <div class="post-meta">时间：2024-12-29 20:15</div>
+        <div class="post-header">【羽墨[版主]】进入论坛方式修改</div>
+        <div class="post-meta">时间：2024-02-03</div>
+      </div>
+
+      <div class="post" onclick="navigateToThread(4)">
+        <div class="post-header">【LOMO】众生相心理研究中心B站号</div>
+        <div class="post-meta">时间：2024-01-26</div>
       </div>
     </div>
   </div>
