@@ -5,86 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>无相者 - 首页</title>
   <style>
-    /* 公共样式 */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #1a1a1a;
-      color: #e6e6e6;
-    }
+/* 公共样式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; /* 更现代的字体 */
+  background-color: #f4f4f4; /* 更亮的背景色 */
+  color: #333; /* 更深的文字颜色 */
+}
 
-    .header {
-      background-color: #333;
-      padding: 20px;
-      text-align: center;
-    }
+.header {
+  background-color: #007bff; /* 更明亮的头部背景色 */
+  padding: 20px;
+  text-align: center;
+}
 
-    .header h1 {
-      margin: 0;
-      color: #ff4d4d;
-    }
+.header h1 {
+  margin: 0;
+  color: white; /* 白色标题 */
+}
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 10px;
-    }
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
 
-    .section-title {
-      font-size: 20px;
-      color: #4caf50;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #444;
-      padding-bottom: 5px;
-    }
+.section-title {
+  font-size: 24px; /* 更大的标题字体 */
+  color: #007bff; /* 标题颜色与头部一致 */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ccc; /* 更浅的分隔线 */
+  padding-bottom: 5px;
+}
 
-    .announcement {
-      background-color: #222;
-      border: 1px solid #444;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 5px;
-    }
+.announcement {
+  background-color: #ffffff; /* 白色背景 */
+  border: 1px solid #ddd; /* 更浅的边框 */
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px; /* 更圆的角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
 
-    .announcement h3 {
-      margin: 0;
-      color: #ff4d4d;
-    }
+.announcement h3 {
+  margin: 0;
+  color: #ff0000; /* 标题颜色 */
+}
 
-    .announcement a {
-      color: #222;
-      margin: 10px 0 0;
-    }
+.announcement p {
+  margin: 10px 0 0;
+}
 
-    .announcement p {
-      margin: 10px 0 0;
-    }
+.announcement a {
+  margin: 10px 0 0;
+  color: #ffffff;
+}
 
-    .post {
-      background-color: #222;
-      border: 1px solid #444;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.post {
+  background-color: #ffffff; /* 白色背景 */
+  border: 1px solid #ddd; /* 更浅的边框 */
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px; /* 更圆的角 */
+  cursor: pointer;
+  transition: background-color 0.3s; /* 添加过渡效果 */
+}
 
-    .post:hover {
-      background-color: #333;
-    }
+.post:hover {
+  background-color: #f1f1f1; /* 鼠标悬停时的背景色 */
+}
 
-    .post-header {
-      font-size: 16px;
-      font-weight: bold;
-      color: #4caf50;
-    }
+.post-header {
+  font-size: 18px; /* 更大的字体 */
+  font-weight: bold;
+  color: #007bff; /* 与主题一致的颜色 */
+}
 
-    .post-meta {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #aaa;
-    }
+.post-meta {
+  margin-top: 10px;
+  font-size: 14px; /* 更大的字体 */
+  color: #888; /* 更浅的文字颜色 */
+}
   </style>
 </head>
 <body>
