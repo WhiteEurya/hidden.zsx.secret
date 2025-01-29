@@ -46,7 +46,6 @@ function navigateTo(url) {
   }
 }
 
-
 // 为导航按钮绑定点击事件
 const lastPage = document.getElementById("last-page");
 if (lastPage) {
