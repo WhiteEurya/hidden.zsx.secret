@@ -1,3 +1,4 @@
+
 // 获取粒子背景的 Canvas 元素
 const canvas = document.querySelector("#particle-bg");
 
