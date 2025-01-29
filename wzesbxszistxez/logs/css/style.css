@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1.6;
   }
 
   /* 限制本页面的 body 样式 */
@@ -86,7 +87,8 @@
   
   /* 文档样式 */
   .modal {
-    background: rgb(1, 1, 1, 0.5); 
+    background: rgb(1, 1, 1, 0.7); 
+    font-family: 'SimSun', '宋体', 'Microsoft YaHei', Arial, sans-serif; 
     margin-top: 85px;
     padding: 20px;
     border-radius: 5px;
@@ -111,8 +113,8 @@
     text-align: center; /* 水平居中 */
     padding: 10px;
     width: 70%;
-    background-color: rgb(48, 48, 48, 0.5); /* 半透明背景便于识别 */
-    color: #fff;
+    background-color: rgb(48, 48, 48, 0.7); /* 半透明背景便于识别 */
+    color: #c2c2c2;
     /*
     flex: 1;
     overflow-y: auto;
@@ -136,8 +138,8 @@
   /* 正文样式 */
   .formal-text p {
     text-align: left;
-    padding-top: 10px;
-    font-size: 18px;
+    padding-top: 20px;
+    font-size: 20px;
   }
 
   /* 查看附件按钮 */
