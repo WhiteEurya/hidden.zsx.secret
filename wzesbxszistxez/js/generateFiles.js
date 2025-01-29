@@ -2,7 +2,7 @@ const documents = [];
 
 // 生成文档列表
 const startDate = new Date("2024-01-01");
-const totalDocuments = 200; // 总文档数量
+const totalDocuments = 366; // 总文档数量
 
 for (let i = totalDocuments; i > 0; i--) {
   const currentDate = new Date(startDate);
@@ -15,12 +15,11 @@ for (let i = totalDocuments; i > 0; i--) {
   const formattedDate = `${year}${month}${day}`;
 
   documents.push({
-    title: `Exp#${formattedDate}`, // 文档标题
-    date: `上传日期: 2024-${month}-${day}`, // 文档的显示日期
-    type: i % 1 === 0 ? "invalid" : "valid", // 每 5 个文档设置为无权限
+    title: `Exp-${formattedDate}`, // 文档标题
+    date: `上传日期: 20${year}-${month}-${day}`, // 文档的显示日期
+    type: i % 1 === 0 ? "invalid" : "valid", // 每个文档都设置为无权限
   });
 }
-
 const documentList = document.getElementById("document-list");
 const pagination = document.getElementById("pagination");
 const alertBox = document.getElementById("alert-box");
@@ -72,7 +71,7 @@ function renderDocuments(page = 1) {
           }, 500); // 与 CSS 中的 transition 时间一致
         }, 2000); // 延迟 2 秒后淡出
       } else {
-        alert(`正在打开文档：${doc.title}`);
+        window.location.href = "logs/"+doc.title+".html";
       }
     });
     documentList.appendChild(div);

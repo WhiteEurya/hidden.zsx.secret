@@ -5,81 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>无相者 - 首页</title>
   <style>
-    /* 公共样式 */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #1a1a1a;
-      color: #e6e6e6;
-    }
+/* 公共样式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; /* 更现代的字体 */
+  background-color: #f4f4f4; /* 更亮的背景色 */
+  color: #333; /* 更深的文字颜色 */
+}
 
-    .header {
-      background-color: #333;
-      padding: 20px;
-      text-align: center;
-    }
+.header {
+  background-color: #007bff; /* 更明亮的头部背景色 */
+  padding: 20px;
+  text-align: center;
+}
 
-    .header h1 {
-      margin: 0;
-      color: #ff4d4d;
-    }
+.header h1 {
+  margin: 0;
+  color: white; /* 白色标题 */
+}
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 10px;
-    }
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
 
-    .section-title {
-      font-size: 20px;
-      color: #4caf50;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #444;
-      padding-bottom: 5px;
-    }
+.section-title {
+  font-size: 24px; /* 更大的标题字体 */
+  color: #007bff; /* 标题颜色与头部一致 */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ccc; /* 更浅的分隔线 */
+  padding-bottom: 5px;
+}
 
-    .announcement {
-      background-color: #222;
-      border: 1px solid #444;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 5px;
-    }
+.announcement {
+  background-color: #ffffff; /* 白色背景 */
+  border: 1px solid #ddd; /* 更浅的边框 */
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px; /* 更圆的角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
 
-    .announcement h3 {
-      margin: 0;
-      color: #ff4d4d;
-    }
+.announcement h3 {
+  margin: 0;
+  color: #ff0000; /* 标题颜色 */
+}
 
-    .announcement p {
-      margin: 10px 0 0;
-    }
+.announcement p {
+  margin: 10px 0 0;
+}
 
-    .post {
-      background-color: #222;
-      border: 1px solid #444;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.announcement a {
+  margin: 10px 0 0;
+  color: #ffffff;
+}
 
-    .post:hover {
-      background-color: #333;
-    }
+.post {
+  background-color: #ffffff; /* 白色背景 */
+  border: 1px solid #ddd; /* 更浅的边框 */
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px; /* 更圆的角 */
+  cursor: pointer;
+  transition: background-color 0.3s; /* 添加过渡效果 */
+}
 
-    .post-header {
-      font-size: 16px;
-      font-weight: bold;
-      color: #4caf50;
-    }
+.post:hover {
+  background-color: #f1f1f1; /* 鼠标悬停时的背景色 */
+}
 
-    .post-meta {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #aaa;
-    }
+.post-header {
+  font-size: 18px; /* 更大的字体 */
+  font-weight: bold;
+  color: #007bff; /* 与主题一致的颜色 */
+}
+
+.post-meta {
+  margin-top: 10px;
+  font-size: 14px; /* 更大的字体 */
+  color: #888; /* 更浅的文字颜色 */
+}
   </style>
 </head>
 <body>
@@ -95,13 +102,9 @@
       <div class="section-title">管理员公告区</div>
 
       <div class="announcement">
-        <h3>【更新】当前最新线索</h3>
-        <p>众生相主页的登录账号为：OBLIV 密码为：OBLIV</p>
-      </div>
-
-      <div class="announcement">
-        <h3>【　　】　　　　　　　</h3>
-        <p>　　　　　</p>
+        <h3>【入站须知】</h3>
+        <p>本论坛以反抗众生相不人道实验为目的搭建，加入论坛前请仔细阅读下方论坛守则</p>
+        <p></p>
       </div>
 
       <div class="announcement">
@@ -116,7 +119,18 @@
       </div>
 
       <div class="announcement">
+        <h3>【更新】当前最新线索</h3>
+        <p>众生相主页的登录账号为：OBLIV 密码为：OBLIV</p>
+      </div>
+
+      <div class="announcement">
+        <h3>【　　】　　　　　　　</h3>
+        <a>看我作甚</a>
+      </div>
+
+      <div class="announcement">
         <h3>【公告】注册、登录与发帖功能正在维护中······</h3>
+        <p>有发现请联系邮箱 yumo@ciallo.com</p>
       </div>
 
     </div>
@@ -124,19 +138,29 @@
     <!-- 发帖区 -->
     <div id="post-section">
       <div class="section-title">发帖区</div>
+      <div class="post" onclick="navigateToThread(5)">
+        <div class="post-header">置顶-【羽墨 [版主]】欢迎各位来到此处</div>
+        <div class="post-meta">时间：2024-01-16</div>
+      </div>
+
       <div class="post" onclick="navigateToThread(1)">
-        <div class="post-header">【用户A】昨晚的行动成功了吗？</div>
-        <div class="post-meta">时间：2024-12-27 10:30</div>
+        <div class="post-header">【卡窗】我在昨天的文件中发现了一张图片！</div>
+        <div class="post-meta">时间：2024-04-14</div>
       </div>
 
       <div class="post" onclick="navigateToThread(2)">
-        <div class="post-header">【用户B】关于通道入口的信息</div>
-        <div class="post-meta">时间：2024-12-27 09:15</div>
+        <div class="post-header">【番茄虾头面】不对，我好像发现了一个奇怪的地方。我先去试试，看看对不对</div>
+        <div class="post-meta">时间：2024-02-15</div>
       </div>
 
       <div class="post" onclick="navigateToThread(3)">
-        <div class="post-header">【爱莉希雅的狗】我找到了一张图！！！</div>
-        <div class="post-meta">时间：2024-12-29 20:15</div>
+        <div class="post-header">【羽墨[版主]】进入论坛方式修改</div>
+        <div class="post-meta">时间：2024-02-03</div>
+      </div>
+
+      <div class="post" onclick="navigateToThread(4)">
+        <div class="post-header">【LOMO】众生相心理研究中心B站号</div>
+        <div class="post-meta">时间：2024-01-26</div>
       </div>
     </div>
   </div>

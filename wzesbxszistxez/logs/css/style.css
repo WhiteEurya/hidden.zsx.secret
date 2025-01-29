@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Roboto';
-    src: url('../../assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    src: url('../../../assets/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'MaShanZheng';
-    src: url('../../assets/fonts/MaShanZheng/MaShanZheng-Regular.ttf') format('truetype');
+    src: url('../../../assets/fonts/MaShanZheng/MaShanZheng-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    line-height: 1.6;
   }
 
   /* 限制本页面的 body 样式 */
@@ -23,7 +24,7 @@
     font-family: 'Arial', sans-serif;
     background-color: #000;
     color: #fff;
-    overflow: hidden; /* 禁止默认滚动条 */
+    /*overflow: hidden;  禁止默认滚动条 */
     scroll-behavior: smooth; /* 平滑滚动 */
     opacity: 0; /* 页面初始完全透明 */
     transition: opacity 0.5s ease; /* 页面淡入动画 */
@@ -32,7 +33,7 @@
   .hero {
     height: 100%;
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
   }
 
   .navbar {
@@ -41,7 +42,7 @@
     position: fixed; /* 固定在页面顶部 */
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    background-color: rgba(0, 0, 0);
     text-align: center;
     font-family: 'Cinzel', serif;
     font-size: 1.5em;
@@ -84,24 +85,22 @@
 
 /* 透明背景覆盖层 */
   
-  /* 悬浮窗样式 */
+  /* 文档样式 */
   .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%; /* 悬浮窗宽度 */
-    height: 70%; /* 悬浮窗高度 */
-    background: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    background: rgb(1, 1, 1, 0.7); 
+    font-family: 'SimSun', '宋体', 'Microsoft YaHei', Arial, sans-serif; 
+    margin-top: 85px;
     padding: 20px;
-    z-index: 2; /* 悬浮窗位于背景层之上 */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    visibility: hidden; /* 防止布局错误 */
-    opacity: 0.85;
+    border-radius: 5px;
+    scroll-behavior: smooth;
+    height: 100hv;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.5 ease;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+
   }
   
   .modal.show {
@@ -109,20 +108,65 @@
     visibility: visible; /* 确保布局正常 */
   }
 
+  /* 文档列表容器 */
+  .document-list {
+    text-align: center; /* 水平居中 */
+    padding: 10px;
+    width: 70%;
+    background-color: rgb(48, 48, 48, 0.7); /* 半透明背景便于识别 */
+    color: #c2c2c2;
+    /*
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;*/
+  }
+  
   /* 标题样式 */
-  .modal h2 {
+  .text-title p {
     font-size: 24px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     text-align: center;
     position: relative;
   }
-  
-  /* 文档列表容器 */
-  .document-list {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 10px;
+
+  /* 作者样式 */
+  .text-writer p {
+    font-size: 18px;
+    text-align: right;
+  }
+
+  /* 正文样式 */
+  .formal-text p {
+    text-align: left;
+    padding-top: 20px;
+    font-size: 20px;
+  }
+
+  /* 查看附件按钮 */
+  .view-image-button {
+    padding: 10px;
+    text-align: left;
+    z-index: 90;
+  }
+
+  /* 分割线 */
+  .seperator {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+  }
+
+  /* 批注样式 */
+  .annotations h1{
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  .annotations p{
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
   }
   
   /* 单个文档样式 */
@@ -177,53 +221,4 @@
 
   .alert.hide {
     opacity: 0; /* 提示框透明 */
-  }
-  
-  /* 分页栏 */
-  .pagination {
-    overflow: auto;
-    display: inline-block;
-    justify-content: center;
-    margin-top: 10px;
-    white-space: nowrap;
-  }
-  
-  .pagination button {
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pagination button:hover {
-    background: #666;
-  }
-  
-  .pagination button.active {
-    background: #3498db;
-    color: #fff;
-  }
-
-  #particle-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  #transition-cover {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000; /* 或者其他背景颜色 */
-    z-index: 9999; /* 遮罩层在最上面 */
-    opacity: 0; /* 初始隐藏 */
   }

@@ -8,7 +8,24 @@ if (inputValue.toLowerCase() === "commands") {
     // 如果输入为 "commands"，跳转到新页面
     window.location.href = "../innercommand/command.html"; // 替换为目标页面的 URL
 } else {
-    // 其他逻辑，例如显示错误提示或执行搜索
-    alert("未找到记录，请检查输入编号！");
+    // 构造目标页面的 URL
+    const targetUrl = "logs/" + inputValue + ".html";
+
+    // 使用 fetch 检查页面是否存在
+    fetch(targetUrl, { method: 'HEAD' })
+        .then(response => {
+            if (response.ok) {
+                // 如果页面存在，则跳转
+                window.location.href = targetUrl;
+            } else {
+                // 如果页面不存在，显示错误提示
+                alert("未找到记录，请检查输入编号！");
+            }
+        })
+        .catch(error => {
+            // 如果请求出错，也显示错误提示
+            console.error('Error:', error);
+            alert("请求出错，请稍后再试！");
+        });
 }
 });
