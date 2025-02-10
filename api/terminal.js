@@ -10,22 +10,21 @@ const fileSystem = {
   "/logs": [],
 };
 
+// 用于模拟文件的内容
 const fileContents = {
-  "认知留存分析实验细则.docx": `认知留存分析实验细则内容：
+  "认知留存分析实验细则.docx": `认知留存分析实验细则：
 1. 实验背景
 2. 实验目的
 3. 实验步骤
 4. 数据分析
-...（内容省略）...
-`,
-  "众生相的真相.docx": `众生相的真相内容：
-这是一个文档的内容，描述了众生相的真相。
-详细内容如下：
+...（内容省略）...`,
+  "众生相的真相.docx": `众生相的真相：
+这是一个描述众生相的文档。
+内容包括：
 - 第一部分
 - 第二部分
 - 第三部分
-...（内容省略）...
-`,
+...（内容省略）...`,
 };
 
 const filePasswords = {
@@ -103,7 +102,7 @@ export default function handler(req, res) {
             state.fileAccessStep = targetFile; // 设置当前正在访问的文件
           } else {
             response.output = `正在打开文件 '${targetFile}'...`;
-            response.fileContent = fileContents[targetFile] || "文件无内容"; // 返回文件内容
+            response.fileContent = fileContents[targetFile] || "文件内容为空";
           }
         } else {
           response.output = `错误：文件 '${targetFile}' 不存在`;
@@ -119,9 +118,9 @@ export default function handler(req, res) {
           state.fileAccessStep = null;
           response.output = "已退出文件访问流程";
         } else if (filePasswords[targetFile] === cmd) {
-          state.fileAccessStep = null; // 验证通过，重置状态
+          state.fileAccessStep = null; // 验证通过，返回文件内容
           response.output = `正在打开文件 '${targetFile}'...`;
-          response.fileContent = fileContents[targetFile] || "文件无内容"; // 返回文件内容
+          response.fileContent = fileContents[targetFile] || "文件内容为空";
         } else {
           response.output = "密码错误，请重新输入（或输入 'exit' 退出）：";
         }

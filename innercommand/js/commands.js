@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const userPrompt = document.getElementById("user-prompt");
   const commandInput = document.getElementById("command");
   const commandLine = document.getElementById("command-line");
-  const vimViewer = document.createElement("div");
-  vimViewer.id = "vim-viewer";
+
+  let vimViewer = null;
 
   const bootMessages = [
     "Initializing hardware...",
@@ -89,25 +89,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function openVimViewer(content) {
-    vimViewer.innerHTML = `
-      <div class="vim-border">
-        <div class="vim-content">${content.replace(/\n/g, "<br>")}</div>
-        <div class="vim-status-bar">按 ":q" 退出文件查看器</div>
-      </div>
-    `;
-    document.body.appendChild(vimViewer);
-    vimViewer.style.display = "flex";
+    if (vimViewer) return;
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === ":") {
-        closeVimViewer();
-      }
-    });
+    vimViewer = document.createElement("div");
+    vimViewer.style.position = "fixed";
+    vimViewer.style.top = "0";
+    vimViewer.style.left = "0";
+    vimViewer.style.width = "100vw";
+    vimViewer.style.height = "100vh";
+    vimViewer.style.backgroundColor = "black";
+    vimViewer.style.color = "green";
+    vimViewer.style.border = "10px solid green";
+    vimViewer.style.overflow = "hidden";
+    vimViewer.style.display = "flex";
+    vimViewer.style.flexDirection = "column";
+
+    const contentArea = document.createElement("div");
+    contentArea.style.flex = "1";
+    contentArea.style.overflowY = "scroll";
+    contentArea.style.padding = "10px";
+    contentArea.textContent = content;
+
+    const commandBar = document.createElement("div");
+    commandBar.style.height = "30px";
+    commandBar.style.backgroundColor = "green";
+    commandBar.style.color = "black";
+    commandBar.textContent = "按 :q 退出";
+
+    vimViewer.appendChild(contentArea);
+    vimViewer.appendChild(commandBar);
+    document.body.appendChild(vimViewer);
+
+    document.addEventListener("keydown", handleVimKeyPress);
   }
 
   function closeVimViewer() {
-    vimViewer.style.display = "none";
-    vimViewer.innerHTML = "";
+    if (!vimViewer) return;
+    document.body.removeChild(vimViewer);
+    vimViewer = null;
+    document.removeEventListener("keydown", handleVimKeyPress);
+  }
+
+  function handleVimKeyPress(event) {
+    if (event.key === ":") {
+      closeVimViewer();
+    }
   }
 
   commandInput.addEventListener("keydown", (event) => {
