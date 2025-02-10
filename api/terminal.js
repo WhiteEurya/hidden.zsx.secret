@@ -1,31 +1,3 @@
-// 模拟文件系统和用户登录信息
-const fileSystem = {
-  "/": ["usr", "data", "logs", ".sys_config", "README.md"],
-  "/usr": ["N17", "accompany"],
-  "/usr/N17": ["众生相的真相.txt"],
-  "/usr/accompany": ["认知留存分析实验细则.txt"],
-  "/data": [],
-  "/logs": [],
-};
-
-// 文件访问密码
-const filePasswords = {
-  "认知留存分析实验细则.txt": "1873",
-};
-
-// 用户登录信息
-const validCredentials = { username: "admin", password: "1234" };
-
-// 初始状态
-let state = {
-  currentDirectory: "/",
-  loggedIn: false,
-  currentUser: "guest",
-  loginStep: null, // 当前登录步骤：null、"username"、"password"
-  tempUsername: "", // 临时存储用户名
-  fileAccessStep: null, // 当前文件访问步骤：null 或正在访问的文件名
-};
-
 export default function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
@@ -47,6 +19,7 @@ export default function handler(req, res) {
   ls                - 列出当前目录
   cd <directory>    - 进入目标目录 (使用 '..' 指代上层目录)
   access <file>     - 访问目标文件 (需输入密码下载)
+  cancel            - 退出当前操作
   login             - 登录
   clear             - 清空终端`;
       break;
@@ -113,6 +86,15 @@ export default function handler(req, res) {
       }
       break;
 
+    case "cancel":
+      if (state.fileAccessStep) {
+        response.output = `已退出对文件 '${state.fileAccessStep}' 的访问。`;
+        state.fileAccessStep = null; // 重置文件访问状态
+      } else {
+        response.output = "错误：当前没有正在进行的操作可以取消。";
+      }
+      break;
+
     default:
       if (state.fileAccessStep) {
         // 如果用户输入的是密码，验证它是否正确
@@ -122,15 +104,15 @@ export default function handler(req, res) {
 
           // 模拟文件内容
           const fileData = {
-            "众生相的真相.docx": "这是众生相的真相文件内容。",
-            "认知留存分析实验细则.docx": "这是认知留存分析实验细则文件内容。",
+            "众生相的真相.txt": "这是众生相的真相文件内容。",
+            "认知留存分析实验细则.txt": "这是认知留存分析实验细则文件内容。",
           };
 
           response.output = `密码正确！开始下载文件：${fileName}`;
           response.fileName = fileName; // 返回的文件名
           response.fileContent = fileData[fileName]; // 模拟的文件内容
         } else {
-          response.output = "密码错误，请重新输入。";
+          response.output = "密码错误，请重新输入。输入 'cancel' 退出。";
         }
       } else {
         response.output = `错误: 指令 '${cmd}' 不存在. 输入 'help' 查询可行指令`;
