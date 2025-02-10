@@ -63,7 +63,11 @@ function bootSequence() {
  */
 function bootComplete() {
   isBootComplete = true;
-  printToTerminal(""); // 添加空行
+
+  // 清空终端内容
+  terminal.innerHTML = ""; // 清除启动动画的日志信息
+
+  // 打印欢迎信息和提示符
   printToTerminal("欢迎进入终端。输入 help 以获取帮助。");
   updatePrompt();
   commandLine.style.visibility = "visible"; // 显示输入行
