@@ -7,7 +7,7 @@ export default function handler(req, res) {
       }
   
       // 特殊指令处理
-      if (input.toLowerCase() === "96202-2686LaFin") {
+      if (input === "96202-2686LaFin") {
         return res.status(200).json({
           redirect: true,
           url: "/i3n1n4e1r5c9o2m6m2a7n1d/command.html", // 指向特殊指令的页面
