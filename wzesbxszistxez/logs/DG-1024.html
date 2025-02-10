@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../assets/icon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>众生相心理研究中心</title>
+</head>
+<body class="particle-page">
+  <!-- 过渡遮罩层 -->
+  <div id="transition-cover" class="hidden"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a id="goHome">主页</a>
+      <a id="last-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 实验文档悬浮窗 -->
+  <div class = "hero">
+    <div class="modal">
+        <div class="document-list" id="document-list">
+
+            <div class="text-title">
+                <p>关于记忆干预的私人笔记</p>
+            </div>
+
+            <div class="text-writer">
+                <p>撰写者：尼采</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="formal-text">
+                <p>　　N17和柳屋又在催报告了。他们总是这样，像两只看不见的手，把那些沉重的东西推到我桌上。但这次，我竟有些感激他们的催促——至少，这让我有理由直面自己腐烂的记忆。</p>
+                <p>　　他们说这项目叫“选择性记忆弱化”，我却觉得更像一场手术，一场剖开大脑、剔除神经纤维里顽固污渍的手术。你知道的，记忆从不只是记忆。它们是活的，会呼吸，会在深夜用尖指甲抓挠你的额叶皮层。</p>
+                <p><b>理论部分：我们如何杀死记忆</b></p>
+                <p>　　记忆不是固态的。根据<b>记忆再巩固理论</b>，每次回忆都是一次重塑的过程——神经元重新编码，突触重新连接，就像把旧磁带反复擦写。理论上，如果在回忆时干扰这个过程，就能让记忆扭曲甚至消失。</p>
+                <p>　　但问题在于，如何精准定位一段记忆？</p>
+                <p>　　人的大脑没有文件路径，没有索引标签。一段记忆可能藏在杏仁核的恐惧回路里，可能寄生在海马体的褶皱中，甚至可能被肢解成气味、触感、光影的碎片，散落在整个皮层。</p>
+                <p>　　另一个线索是<b>神经可塑性</b>。大脑像一团潮湿的黏土，每一次思考都在重塑它的形状。如果持续用特定频率的电磁波刺激前额叶，或者用药物阻断谷氨酸盐的释放，或许能像风化岩石般，将某些记忆逐渐磨蚀。</p>
+                <p>　　但这些都是纸上谈兵。直到那天，我在旧实验室的数据库里翻到一组被删除的文件——某个上世纪八十年代的苏联项目，代号“白桦林”。他们用致幻剂和电休克疗法，成功让战俘忘记了审讯内容。实验记录里有一句话：“记忆像雪地上的脚印，只需要一场足够大的暴风雪。”</p>
+                <p><b>自我实验记录</b></p>
+                <p>　　我决定从自己开始。毕竟，没人比我更熟悉那个需要被抹除的夜晚：雨声，急救车的蜂鸣器，还有她最后一条简讯的发送时间——██:██。</p>
+                <p>第1阶段：定位</p>
+                <p>　　连续三晚服用普萘洛尔（β受体阻滞剂，用于削弱情绪记忆），然后强迫自己回忆每个细节。药物让心脏跳得像生锈的钟摆，但记忆依然锋利。那些画面被浸泡在药片溶解的粘液里，反而变得更清晰了。我想起尼采在《查拉图斯特拉如是说》中的一句话：“记忆是一种沉重的负担，但遗忘却是一种更深的痛苦。”或许他说得对，记忆的锋利并非来自它的存在，而是来自我们试图逃避它的徒劳。</p>
+                <p>第2阶段：覆盖</p>
+                <p>　　借鉴“虚假记忆植入”研究，我试图用虚构场景替换真实事件。在催眠状态下反复告诉自己：那天没有下雨，手机早就没电，她发的是笑脸而不是诀别词。但潜意识在反抗——每当我虚构到“她推开门走进来”时，太阳穴就会突突抽痛。</p>
+                <p>第3阶段：湮灭</p>
+                <p>　　最后动用了经颅磁刺激仪。把线圈对准右侧颞叶，用θ波频持续轰击四十分钟。结束后，我发现自己记得所有事实，却失去了与之相关的情绪。那个曾经让我窒息的发送时间██:██，现在已经足够模糊，让我无法回忆了。</p>
+                <p></p>
+                <p><b>副作用清单</b></p>
+                <p>　　·味觉丧失72小时（尝不出咖啡的苦）</p>
+                <p>　　·短期记忆出现断层（忘记自己锁过门）</p>
+                <p>　　·看到雨水会产生愉悦感（这可能是好事？）</p>
+                <p>　　·梦见她站在空白房间里，脸被像素化</p>
+                <p></p>
+                <p>未解答的问题</p>
+                <p>　　当一段记忆被剥离，空出来的位置会被什么填补？我注意到自己开始收集蓝色玻璃瓶（她最讨厌的颜色），冰箱里堆满她最爱喝的咖啡（我以前从不吃这个）。大脑似乎在用荒诞的方式维持某种平衡。</p>
+                <p>　　柳屋说这是重大突破；N17已经在写经费申请，并让我注意身体；奥康谱尼为我拍手叫好，开始策划下一步行为；黑鸟让我整理好数据上交，同时难得露出鼓励的笑容；他们说，我是最年轻但最天才的实验者。但我看着实验录像里那个戴着电极的自己，突然觉得陌生——如果连最痛的记忆都能被修改，那么“我”究竟是由什么组成的？</p>
+                <p>　　也许所谓“遗忘技术”，不过是把可见的伤口转化成更隐蔽的内出血。那些被删除的记忆，会变成大脑里的暗物质，用看不见的质量扭曲所有新生的记忆。</p>
+                <p>　　今晚又要下雨了。我吞下最后一粒普萘洛尔，把磁刺激仪的功率调到最大。这一次，我要试试能不能忘记第一次实验的日期，或是我第一次使用CSDN博客的日期。</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="annotations">
+              <h1>批注 By N17</h1>
+              <p>关于这件事情…我很抱歉。我们将封存“尼采”的名号。在你失去记忆之后，你就安心的成为普通人吧。再见了，<a style="color: rgba(48, 48, 48, 0);">Zarcoffee</a>。</p>
+              <p></p>
+            </div>
+
+            <div class="seperator"></div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+    <!-- 提示框 -->
+    <div class="alert" id="alert-box" style="display: none;">
+        <p>权限不足，无法访问该文档。</p>
+      </div>
+
+    <!-- 导航栏按键绑定 -->
+    <script src="js/nextpage.js"></script>
+
+
+  <script>
+    window.addEventListener("load", () => {
+    const modal = document.querySelector(".modal");
+    modal.classList.add("show"); // 添加显示类
+    });
+
+    window.addEventListener("beforeunload", () => {
+    const modal = document.querySelector(".modal");
+    if (modal) {
+        modal.classList.remove("show"); // 移除显示类
+        modal.style.display = "none"; // 强制隐藏
+    }
+    });
+  </script>
+</body>
+</html>
