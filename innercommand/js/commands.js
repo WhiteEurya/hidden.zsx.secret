@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isBootComplete = false;
 
   // 打印到终端的函数，增加逐字打印效果
-  async function printToTerminal(text, delay = 50) {
+  async function printToTerminal(text, delay = 0) {
     const line = document.createElement("div");
     logContainer.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function nextLine() {
       if (index < bootMessages.length) {
-        printToTerminal(bootMessages[index]).then(() => {
+        printToTerminal(bootMessages[index], 30).then(() => {
           index++;
           setTimeout(nextLine, 300);
         });
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     commandBar.style.height = "30px";
     commandBar.style.backgroundColor = "green";
     commandBar.style.color = "black";
-    commandBar.textContent = "按 :q 退出";
+    commandBar.textContent = "按 : 退出";
 
     vimViewer.appendChild(contentArea);
     vimViewer.appendChild(commandBar);
