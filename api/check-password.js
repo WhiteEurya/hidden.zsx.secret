@@ -11,7 +11,7 @@ export default function handler(req, res) {
             // 返回成功响应和跳转 URL
             res.status(200).json({
                 success: true,
-                redirectUrl: 'wzesbxszistxez/website.html', // 成功后跳转的页面
+                redirectUrl: 'wzesbxszistxez/saeca3r1cxh8bdo2x1.html', // 成功后跳转的页面
             });
         } else {
             // 返回错误响应
