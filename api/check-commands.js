@@ -15,11 +15,11 @@ export default function handler(req, res) {
       }
   
       // 检查记录编号是否存在
-      const baseUrl = "https://example.com/logs/"; // 替换为实际的基础 URL
+      const baseUrl = "https://www.invisib1emem0ry.icu/wzesbxszistxez/logs/"; // 替换为实际的基础 URL
       const targetUrl = `${baseUrl}${input}.html`;
   
       // 模拟记录检查逻辑（您可以替换为真实的数据库或文件检查逻辑）
-      const existingRecords = ["DG-12345", "DG-67890", "DG-11111"]; // 示例存在的记录
+      const existingRecords = ["DG-161211", "DG-180904", "DG-190824", "DG-200716", "DG-220924", "DG-240413"]; // 示例存在的记录
   
       if (existingRecords.includes(input)) {
         // 如果记录存在，返回跳转 URL
