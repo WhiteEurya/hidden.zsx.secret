@@ -353,26 +353,26 @@
           { text: "不，这已经是我的记忆能力的极限了", nextQuestion: 20},
         ]
       },
-      {
-        //20
-        question: "仔细回想过去，您丢失了什么记忆？",
-        inputType: "text",
-        options: [
-          { text: "是的，我的记忆能力有待提升", nextQuestion: 20},
-          { text: "不，这已经是我的记忆能力的极限了", nextQuestion: 20},
-        ],
-        handleAnswer: function(answer) {
-          let url;
-          switch (answer.toLowerCase().trim()) {
-            case '遗忘':
-              url = '';
-              break;
-            default:
-              url = '';
-          }
-          window.location.href = url;
-        }
-      }
+      // {
+      //   //20
+      //   question: "仔细回想过去，您丢失了什么记忆？",
+      //   inputType: "text",
+      //   options: [
+      //     { text: "是的，我的记忆能力有待提升", nextQuestion: 20},
+      //     { text: "不，这已经是我的记忆能力的极限了", nextQuestion: 20},
+      //   ],
+      //   handleAnswer: function(answer) {
+      //     let url;
+      //     switch (answer.toLowerCase().trim()) {
+      //       case '遗忘':
+      //         url = '';
+      //         break;
+      //       default:
+      //         url = '';
+      //     }
+      //     window.location.href = url;
+      //   }
+      // }
     ];
 
     let currentQuestionIndex = 0; // 当前问题索引
