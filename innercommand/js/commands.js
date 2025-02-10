@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const userPrompt = document.getElementById("user-prompt");
   const commandInput = document.getElementById("command");
   const commandLine = document.getElementById("command-line");
+  const vimViewer = document.createElement("div");
+  vimViewer.id = "vim-viewer";
 
   const bootMessages = [
     "Initializing hardware...",
@@ -71,16 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        // 检查是否是文件流
-        const contentDisposition = response.headers.get("Content-Disposition");
-        if (contentDisposition) {
-          const fileName = contentDisposition.split("filename=")[1].replace(/"/g, ""); // 提取文件名
-          const blob = await response.blob();
-          triggerFileDownload(fileName, blob); // 自动下载文件
-          printToTerminal(`文件 "${fileName}" 已成功下载。`);
+        const data = await response.json();
+        if (data.fileContent) {
+          openVimViewer(data.fileContent); // 打开 Vim 查看器
         } else {
-          // 处理普通文本响应
-          const data = await response.json();
           printToTerminal(data.output);
           updatePrompt(data.prompt || "[guest] / > ");
         }
@@ -92,15 +88,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function triggerFileDownload(fileName, blob) {
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  function openVimViewer(content) {
+    vimViewer.innerHTML = `
+      <div class="vim-border">
+        <div class="vim-content">${content.replace(/\n/g, "<br>")}</div>
+        <div class="vim-status-bar">按 ":q" 退出文件查看器</div>
+      </div>
+    `;
+    document.body.appendChild(vimViewer);
+    vimViewer.style.display = "flex";
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === ":") {
+        closeVimViewer();
+      }
+    });
+  }
+
+  function closeVimViewer() {
+    vimViewer.style.display = "none";
+    vimViewer.innerHTML = "";
   }
 
   commandInput.addEventListener("keydown", (event) => {
