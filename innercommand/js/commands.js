@@ -18,11 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isBootComplete = false;
 
-  function printToTerminal(text) {
+  // 打印到终端的函数，增加逐字打印效果
+  async function printToTerminal(text, delay = 50) {
     const line = document.createElement("div");
-    line.textContent = text;
     logContainer.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
+
+    for (const char of text) {
+      line.textContent += char;
+      await new Promise((resolve) => setTimeout(resolve, delay)); // 延迟逐字打印
+    }
   }
 
   function bootSequence() {
@@ -30,9 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function nextLine() {
       if (index < bootMessages.length) {
-        printToTerminal(bootMessages[index]);
-        index++;
-        setTimeout(nextLine, 300);
+        printToTerminal(bootMessages[index]).then(() => {
+          index++;
+          setTimeout(nextLine, 300);
+        });
       } else {
         bootComplete();
       }
@@ -77,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.fileContent) {
           openVimViewer(data.fileContent); // 打开 Vim 查看器
         } else {
-          printToTerminal(data.output);
+          await printToTerminal(data.output); // 打印 API 返回的内容
           updatePrompt(data.prompt || "[guest] / > ");
         }
       } else {
@@ -140,9 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key === "Enter") {
       const command = commandInput.textContent.trim();
       if (isBootComplete) {
-        printToTerminal(userPrompt.textContent + command);
-        processCommand(command);
-        commandInput.textContent = ""; // 清空输入框
+        printToTerminal(userPrompt.textContent + command).then(() => {
+          processCommand(command);
+          commandInput.textContent = ""; // 清空输入框
+        });
         event.preventDefault();
       }
     }
