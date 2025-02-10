@@ -112,16 +112,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        if (data.output) {
-          printToTerminal(data.output); // 输出后端返回信息
+        // 检查是否是文件流
+        const contentDisposition = response.headers.get("Content-Disposition");
+        if (contentDisposition) {
+          const fileName = contentDisposition
+            .split("filename=")[1]
+            .replace(/"/g, ""); // 提取文件名
+          const blob = await response.blob();
+          triggerFileDownload(fileName, blob);
+          printToTerminal(`文件 "${fileName}" 已下载。`);
+        } else {
+          // 处理普通文本响应
+          const data = await response.json();
+          if (data.output) {
+            printToTerminal(data.output); // 输出后端返回信息
+          }
+          updatePrompt(data.prompt || "[guest] / > "); // 如果后端返回新提示符，则更新
         }
-
-        if (data.fileName && data.fileContent) {
-          downloadFile(data.fileName, data.fileContent); // 触发文件下载
-        }
-
-        updatePrompt(data.prompt || "[guest] / > "); // 如果后端返回新提示符，则更新
       } else {
         printToTerminal("错误：无法处理指令");
       }
@@ -131,21 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * 下载文件
+   * 触发文件下载
    * @param {string} fileName - 文件名称
-   * @param {string} fileContent - 文件内容
+   * @param {Blob} blob - 文件数据
    */
-  function downloadFile(fileName, fileContent) {
-     const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+  function triggerFileDownload(fileName, blob) {
     const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
   }
