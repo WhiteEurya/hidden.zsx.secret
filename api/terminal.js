@@ -1,29 +1,26 @@
-// 模拟文件系统和用户登录信息
+import fs from "fs";
+import path from "path";
+
 const fileSystem = {
   "/": ["usr", "data", "logs", ".sys_config", "README.md"],
   "/usr": ["N17", "accompany"],
-  "/usr/N17": ["众生相的真相.txt"],
-  "/usr/accompany": ["认知留存分析实验细则.txt"],
+  "/usr/N17": ["众生相的真相.docx"],
+  "/usr/accompany": ["认知留存分析实验细则.docx"],
   "/data": [],
   "/logs": [],
 };
 
-// 文件访问密码
 const filePasswords = {
-  "认知留存分析实验细则.txt": "1873",
+  "认知留存分析实验细则.docx": "1873",
 };
 
-// 用户登录信息
-const validCredentials = { username: "admin", password: "1234" };
-
-// 初始状态
 let state = {
   currentDirectory: "/",
   loggedIn: false,
   currentUser: "guest",
-  loginStep: null, // 当前登录步骤：null、"username"、"password"
-  tempUsername: "", // 临时存储用户名
-  fileAccessStep: null, // 当前文件访问步骤：null 或正在访问的文件名
+  loginStep: null,
+  tempUsername: "",
+  fileAccessStep: null,
 };
 
 export default function handler(req, res) {
@@ -47,43 +44,29 @@ export default function handler(req, res) {
   ls                - 列出当前目录
   cd <directory>    - 进入目标目录 (使用 '..' 指代上层目录)
   access <file>     - 访问目标文件 (需输入密码下载)
-  login             - 登录
   clear             - 清空终端`;
       break;
 
     case "ls":
       if (fileSystem[state.currentDirectory]) {
         const files = fileSystem[state.currentDirectory];
-        if (files.length === 0) {
-          response.output = "权限不足，该目录文件已被隐藏";
-        } else {
-          response.output = files.join("\n");
-        }
+        response.output = files.length > 0 ? files.join("\n") : "当前目录为空";
       } else {
-        response.output = "错误：当前目录下无文件";
+        response.output = "错误：当前目录不存在";
       }
       break;
 
     case "cd":
       if (args.length === 0) {
-        response.output = "错误：请输入目录";
+        response.output = "错误：请指定目录";
       } else if (args[0] === "..") {
-        const parentDirectory = getParentDirectory(state.currentDirectory);
-        if (parentDirectory) {
-          state.currentDirectory = parentDirectory;
-        } else {
-          response.output = "错误：已在根目录下";
-        }
+        state.currentDirectory = getParentDirectory(state.currentDirectory) || "/";
       } else {
         const targetDir = args[0];
         const newPath =
           state.currentDirectory === "/" ? `/${targetDir}` : `${state.currentDirectory}/${targetDir}`;
         if (fileSystem[newPath]) {
-          if (fileSystem[newPath].length === 0) {
-            response.output = "权限不足，该目录文件已被隐藏";
-          } else {
-            state.currentDirectory = newPath;
-          }
+          state.currentDirectory = newPath;
         } else {
           response.output = `错误：目录 '${targetDir}' 不存在`;
         }
@@ -95,17 +78,14 @@ export default function handler(req, res) {
         response.output = "错误：请输入文件名";
       } else {
         const targetFile = args[0];
-        if (
-          fileSystem[state.currentDirectory] &&
-          fileSystem[state.currentDirectory].includes(targetFile)
-        ) {
+        const currentFiles = fileSystem[state.currentDirectory] || [];
+        if (currentFiles.includes(targetFile)) {
           if (filePasswords[targetFile]) {
-            response.output = `您正在尝试访问 '${targetFile}'，请输入密码（输入 'exit' 退出）：`;
+            response.output = `您正在尝试访问 '${targetFile}'，请输入密码：`;
             state.fileAccessStep = targetFile; // 设置当前正在访问的文件
-          } else if (state.loggedIn) {
-            response.output = `您可以访问 '${targetFile}'.`;
           } else {
-            response.output = "错误：权限不足。";
+            // 如果文件无需密码，则直接返回文件
+            return downloadFile(targetFile, res);
           }
         } else {
           response.output = `错误：文件 '${targetFile}' 不存在`;
@@ -115,30 +95,19 @@ export default function handler(req, res) {
 
     default:
       if (state.fileAccessStep) {
-        // 如果用户正在输入密码
-        const fileName = state.fileAccessStep;
+        const targetFile = state.fileAccessStep;
 
-        // 如果用户输入 'exit' 或 'quit'，退出密码输入环节
         if (cmd === "exit" || cmd === "quit") {
-          state.fileAccessStep = null; // 重置文件访问状态
-          response.output = "已退出文件访问。";
-        } else if (filePasswords[fileName] === cmd) {
-          state.fileAccessStep = null; // 重置文件访问状态
-
-          // 模拟文件内容
-          const fileData = {
-            "众生相的真相.txt": "这是众生相的真相文件内容。",
-            "认知留存分析实验细则.txt": "这是认知留存分析实验细则文件内容。",
-          };
-
-          response.output = `密码正确！开始下载文件：${fileName}`;
-          response.fileName = fileName; // 返回的文件名
-          response.fileContent = fileData[fileName]; // 模拟的文件内容
+          state.fileAccessStep = null;
+          response.output = "已退出文件访问流程";
+        } else if (filePasswords[targetFile] === cmd) {
+          state.fileAccessStep = null; // 验证通过，重置状态
+          return downloadFile(targetFile, res); // 返回文件
         } else {
-          response.output = "密码错误，请重新输入（输入 'exit' 退出）：";
+          response.output = "密码错误，请重新输入（或输入 'exit' 退出）：";
         }
       } else {
-        response.output = `错误: 指令 '${cmd}' 不存在. 输入 'help' 查询可行指令`;
+        response.output = `错误：未知命令 '${cmd}'。输入 'help' 获取帮助`;
       }
       break;
   }
@@ -147,7 +116,18 @@ export default function handler(req, res) {
   return res.status(200).json(response);
 }
 
-// 获取上一级目录
+function downloadFile(fileName, res) {
+  const filePath = path.join(process.cwd(), "files", fileName); // 拼接文件路径
+  if (fs.existsSync(filePath)) {
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+    res.setHeader("Content-Type", "application/octet-stream");
+    const fileStream = fs.createReadStream(filePath);
+    return fileStream.pipe(res); // 将文件流直接返回
+  } else {
+    return res.status(404).json({ error: "文件不存在" });
+  }
+}
+
 function getParentDirectory(path) {
   if (path === "/") return null;
   const parts = path.split("/").filter(Boolean);
