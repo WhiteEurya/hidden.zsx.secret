@@ -2,15 +2,15 @@
 const fileSystem = {
   "/": ["usr", "data", "logs", ".sys_config", "README.md"],
   "/usr": ["N17", "accompany"],
-  "/usr/N17": ["众生相的真相.docx"],
-  "/usr/accompany": ["认知留存分析实验细则.docx"],
+  "/usr/N17": ["众生相的真相.txt"],
+  "/usr/accompany": ["认知留存分析实验细则.txt"],
   "/data": [],
   "/logs": [],
 };
 
 // 文件访问密码
 const filePasswords = {
-  "认知留存分析实验细则.docx": "1873",
+  "认知留存分析实验细则.txt": "1873",
 };
 
 // 用户登录信息
