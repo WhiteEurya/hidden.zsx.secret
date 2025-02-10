@@ -137,7 +137,7 @@ export default function handler(req, res) {
           response.output = `正在打开文件 '${targetFile}'...`;
           response.fileContent = fileContents[targetFile] || "文件内容为空";
         } else {
-          response.output = "密码错误，请重新输入（或输入 'exit' 退出）：";
+          response.output = "密码错误，请重新输入（或输入 'exit' 退出）：<br> 提示：“以防又嗑药磕多了，留下一个提示：我经历了多少次才成功？”";
         }
       } else {
         response.output = `错误：未知命令 '${cmd}'。输入 'help' 获取帮助`;
