@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * @param {string} fileContent - 文件内容
    */
   function downloadFile(fileName, fileContent) {
-    const blob = new Blob([fileContent], { type: "text/plain" });
+     const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement("a");
