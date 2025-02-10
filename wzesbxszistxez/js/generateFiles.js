@@ -1,25 +1,71 @@
-const documents = [];
+const totalDocuments = 376; // 总文档数量
+const randomSeed = 42; // 固定随机种子，确保结果一致
 
-// 生成文档列表
-const startDate = new Date("2024-01-01");
-const totalDocuments = 366; // 总文档数量
-
-for (let i = totalDocuments; i > 0; i--) {
-  const currentDate = new Date(startDate);
-  currentDate.setDate(currentDate.getDate() + i);
-
-  // 格式化日期为 Exp#240102 格式
-  const year = String(currentDate.getFullYear()).slice(-2);
-  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  const day = String(currentDate.getDate()).padStart(2, "0");
-  const formattedDate = `${year}${month}${day}`;
-
-  documents.push({
-    title: `Exp-${formattedDate}`, // 文档标题
-    date: `上传日期: 20${year}-${month}-${day}`, // 文档的显示日期
-    type: i % 1 === 0 ? "invalid" : "valid", // 每个文档都设置为无权限
-  });
+// 伪随机数生成器（基于种子）
+function seededRandom(seed) {
+  let value = seed;
+  return function () {
+    value = (value * 16807) % 2147483647;
+    return (value - 1) / 2147483646;
+  };
 }
+
+// 随机生成 2016-2025 年范围内的日期
+function getRandomDate(randomFunc) {
+  const start = new Date("2016-01-01").getTime();
+  const end = new Date("2025-12-31").getTime();
+  const randomTime = Math.floor(randomFunc() * (end - start + 1)) + start;
+  return new Date(randomTime);
+}
+
+// 使用 Set 来确保日期唯一
+function generateUniqueDates(seed) {
+  const randomFunc = seededRandom(seed); // 用固定种子生成随机数
+  const uniqueDates = new Set();
+
+  while (uniqueDates.size < totalDocuments) {
+    const randomDate = getRandomDate(randomFunc);
+
+    // 格式化日期为字符串
+    const year = String(randomDate.getFullYear()); // 完整年份
+    const shortYear = year.slice(-2); // 年的后两位
+    const month = String(randomDate.getMonth() + 1).padStart(2, "0");
+    const day = String(randomDate.getDate()).padStart(2, "0");
+    const formattedDate = `${shortYear}${month}${day}`; // 用于文档名的日期格式
+    const displayDate = `${year}年${month}月${day}日`; // 用于显示的日期格式
+
+    uniqueDates.add({ formattedDate, displayDate }); // 添加到 Set 中，确保唯一
+  }
+
+  return Array.from(uniqueDates);
+}
+
+// 打乱数组顺序（使用固定种子）
+function shuffleArray(array, seed) {
+  const randomFunc = seededRandom(seed); // 用固定种子生成随机数
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(randomFunc() * (i + 1)); // 随机数用于交换
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// 生成文档数据
+function generateDocuments() {
+  const uniqueDates = generateUniqueDates(randomSeed); // 固定种子生成唯一日期
+  const shuffledDates = shuffleArray(uniqueDates, randomSeed); // 固定种子打乱顺序
+
+  // 构造文档数据
+  return shuffledDates.map((dateObj, index) => ({
+    title: `DG-${dateObj.formattedDate}`, // 文档标题，例如 DG-221207
+    date: `上传日期: ${dateObj.displayDate}`, // 显示的中文日期，例如 2022年12月7日
+    type: index % 2 === 0 ? "invalid" : "valid", // 随机设置无权限或有权限（固定规则）
+  }));
+}
+
+// 初始化文档列表
+const documents = generateDocuments();
+
 const documentList = document.getElementById("document-list");
 const pagination = document.getElementById("pagination");
 const alertBox = document.getElementById("alert-box");
@@ -71,7 +117,7 @@ function renderDocuments(page = 1) {
           }, 500); // 与 CSS 中的 transition 时间一致
         }, 2000); // 延迟 2 秒后淡出
       } else {
-        window.location.href = "logs/"+doc.title+".html";
+        window.location.href = "logs/" + doc.title + ".html";
       }
     });
     documentList.appendChild(div);

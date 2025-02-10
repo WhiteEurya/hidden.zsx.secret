@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link rel="stylesheet" href="css/zxs_styles.css">
+  <title>众生相心理研究中心</title>
+
+</head>
+<body class="particle-page">
+  <div id="transition-cover" style="display: none;"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a href="#home" id="home-link">主页</a>
+      <a id = "next-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 第一屏 -->
+  <div class="section hero" id="home">
+    <canvas id="particle-bg"></canvas>
+    <h1>欢迎来到公开档案查询系统</h1>
+    <div class="search-box">
+      <input type="text" placeholder="输入记录编号..." id="record-input">
+      <button id="search-button">&#x1F50E;</button>
+    </div>
+    <p>Memory Etnernal, Mind Unbound.</p>
+  </div>
+
+  <!-- 引入粒子背景脚本 -->
+  <script src="js/particles.js"></script>
+
+  <!-- 滚动功能 -->
+  <script src="js/scroll.js"></script>
+
+  <!-- 滚动功能 -->
+  <script src='js/nextpage.js'></script>
+
+  <script src='js/jumpToCommands.js'></script>
+</body>
+</html>

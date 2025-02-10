@@ -227,3 +227,21 @@
     z-index: 9999; /* 遮罩层在最上面 */
     opacity: 0; /* 初始隐藏 */
   }
+
+  .system-announcement {
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
+    color: white; /* 白色文字 */
+    text-align: center; /* 居中对齐 */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 14px; /* 字体大小 */
+    position: fixed; /* 固定在页面底部 */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* 占满宽度 */
+    z-index: 1000; /* 确保在最顶层 */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); /* 顶部投影效果 */
+  }
+
+  .system-announcement p {
+    margin: 0; /* 去掉段落默认外边距 */
+  }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../assets/icon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>众生相心理研究中心</title>
+</head>
+<body class="particle-page">
+  <!-- 过渡遮罩层 -->
+  <div id="transition-cover" class="hidden"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a id="goHome">主页</a>
+      <a id="last-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 实验文档悬浮窗 -->
+  <div class = "hero">
+    <div class="modal">
+        <div class="document-list" id="document-list">
+
+            <div class="text-title">
+                <p>文档编号：DG-0411</p>
+            </div>
+
+            <div class="text-writer">
+                <p>撰写者：奥康普尼</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="formal-text">
+                <p>　　关于“神明编号STSA”能否被直接观测的研究（部分资料来源于典籍《弦子七奥书》）</p>
+                <p>　　神明编号STSA，最早于典籍《弦子七奥书》中提及。“乃是统治诸神者，自宇宙诞生伊始便已存在。或者说宇宙依托于STSA而存在。STSA共有三位直系子嗣，神明编号NE，神明编号YG，神明编号‘未知’。其中神明编号NE可以直接理解并行使STSA的意志。此外，还有诸多神明围绕STSA演奏世间最为美妙的乐曲”——典籍《弦子七奥书》</p>
+                <p>　　作为神话爱好者，我还挺像知道书里写的这神明到底存不存在。既然整个宇宙都依托这个神明的梦境而存在，那有没有这个神有区别吗。所以我在会议上提出研究STSA能否被观测，以证实神明STSA是否存在。</p>
+                <p>　　在带队出发前往了多个所谓神明出没的地方，包括小日子那边一些神官称作“高天原”、一些猎魔人经常出没的闹鬼场所、墨西哥那边的太阳神庙什么的。只能说，可以确定一件事，如果真的有神明，至少用物理仪器的手段是观测不了的。</p>
+                <p>　　看来只能使用Plan B了，既然物理手段不行，就只能从精神层面去尝试了。正好，最近在研究一些前段时间搞到的稀有药剂LD（下称LD），看看能不能用这些药剂取得什么突破。</p>
+                <p></p>
+                <p>第1次实验</p>
+                <p>　　药剂配方：LD、蜂蜜、新鲜的人类血液、微量大麻、极微量致死类药物</p>
+                <p>　　制作工艺：3号工艺</p>
+                <p>　　实验结果：失败（在医院躺了两天）</p>
+                <p></p>
+                <p>第2次实验</p>
+                <p>　　药剂配方：LD、蜂蜜、新鲜的人类血液、极微量大麻、极微量致死类药物</p>
+                <p>　　制作工艺：3号工艺</p>
+                <p>　　实验结果：这玩意了看着就不太像能喝的，结果确实，给小鼠服用后30秒死亡</p>
+                <p></p>
+                <p>第7次实验</p>
+                <p>　　药剂配方：LD、HCL、某种NE遗迹的采集物、大麻</p>
+                <p>　　制作工艺：72号工艺</p>
+                <p>　　实验结果：陷入了长达两小时的梦游状态，剧观察者所说，我一只在说一些他根本听不懂的话</p>
+                <p></p>
+                <p>第26次实验</p>
+                <p>　　药剂配方：LD、蜂蜜、新鲜的人类血液、微量大麻、极微量致死类药物</p>
+                <p>　　制作工艺：3号工艺</p>
+                <p>　　实验结果：失败（在医院躺了两天）</p>
+                <p></p>
+                <p>第827次实验</p>
+                <p>　　药剂配方：LD、1892号药剂、7号塑形剂、II类人类血液制品</p>
+                <p>　　制作工艺：34号工艺</p>
+                <p>　　实验结果：已经涵盖了LD的全部功效，看来接下来只需要在致幻方面下功夫就行了</p>
+                <p>　　对的，对的，我就说学药才能救世界吧，黑鸟竟然不认同我最伟大的发明，到时候把这份药片掺到他的咖啡里我看看他还有什么话能说。</p>
+                <p>　　总之，在第1873次失败后，我终于调配好了剂量，在致幻的同时加入了时空扭曲的特性。在服下药片后的10分钟，我看到了……不对，我看到了什么来着，是一个宫殿还是茅厕……我的那段记忆怎么这么混乱，我想起来了，我看到了牛肉馅饼（？？？）。</p>
+                <p>　　在寻求N17的帮助后可以确定，我确实看到了一些东西，但是那个东西在扭曲的我的认知。不过那个东西究竟是什么已经不重要了，在当时的药片里面我加入了当时从埃及带回来的NE的部分皮肤碎片，所以只有可能看到传说中的祂——STSA，这足以证明STSA并非不可观测，只要找到方法，即使祂再怎么扭曲我的认知，我总是能知道些什么的。</p>
+                <p>　　（ps：那个药片的效用有点太大了，听N17说我的精神状况有点吓人，不过说实话我感觉也就是有点头疼，偶尔这两各星期还有点精神分裂、躁郁症、暴力倾向……）</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="annotations">
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+            </div>
+
+            <div class="seperator"></div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+    <!-- 提示框 -->
+    <div class="alert" id="alert-box" style="display: none;">
+        <p>权限不足，无法访问该文档。</p>
+      </div>
+
+    <!-- 导航栏按键绑定 -->
+    <script src="js/nextpage.js"></script>
+
+
+  <script>
+    window.addEventListener("load", () => {
+    const modal = document.querySelector(".modal");
+    modal.classList.add("show"); // 添加显示类
+    });
+
+    window.addEventListener("beforeunload", () => {
+    const modal = document.querySelector(".modal");
+    if (modal) {
+        modal.classList.remove("show"); // 移除显示类
+        modal.style.display = "none"; // 强制隐藏
+    }
+    });
+  </script>
+</body>
+</html>

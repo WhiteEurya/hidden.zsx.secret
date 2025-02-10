@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../assets/icon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>众生相心理研究中心</title>
+</head>
+<body class="particle-page">
+  <!-- 过渡遮罩层 -->
+  <div id="transition-cover" class="hidden"></div>
+  
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a id="goHome">主页</a>
+      <a id="last-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 实验文档悬浮窗 -->
+  <div class = "hero">
+    <div class="modal">
+        <div class="document-list" id="document-list">
+
+            <div class="text-title">
+                <p>文档编号：DG-0413</p>
+            </div>
+
+            <div class="text-writer">
+                <p>撰写者：N17</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="formal-text">
+                <p>　　关于先前奥康谱尼提及的重复文字对于意识的影响的猜想，我和黑鸟已经计划了一系列实验。顺便一说，他的猜想荒谬的离谱。姑且在这里写下原猜想：</p>
+                <p>　　不断重复的一段文字可能会刺激人的回忆，但超过某个阈值之后反而会导致记忆的遗失。</p>
+                <p>　　心理学上确实存在所谓“语义饱和”（Semantic Satiation）的概念，但这种现象是暂时的，那种程度的神经活动抑制根本称不上“遗失”。组织上让我们要做到的是彻底的将记忆“藏起来”的方法，这种方法显然是不可行的。</p>
+                <p>　　在讨论之后，我们修正了这个方法。这得多亏了黑鸟的数据库。人类大脑对信息的记忆形成依赖于模式识别，在将文字以特定的方式排列后，可以大幅增加受试者的认知负荷。此时再利用语义饱和，将需要让受试者遗忘的信息藏入重复的文本中，加固神经活动的抑制。</p>
+                <p>　　基于这个理论，我做了一张具有这种效应的文本图片，附在报告中。</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="annotations">
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="view-image-button">
+                <a href="assets/DG-0413.png">查看附件</a>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+    <!-- 提示框 -->
+    <div class="alert" id="alert-box" style="display: none;">
+        <p>权限不足，无法访问该文档。</p>
+      </div>
+
+    <!-- 导航栏按键绑定 -->
+    <script src="js/nextpage.js"></script>
+
+
+  <script>
+    window.addEventListener("load", () => {
+    const modal = document.querySelector(".modal");
+    modal.classList.add("show"); // 添加显示类
+    });
+
+    window.addEventListener("beforeunload", () => {
+    const modal = document.querySelector(".modal");
+    if (modal) {
+        modal.classList.remove("show"); // 移除显示类
+        modal.style.display = "none"; // 强制隐藏
+    }
+    });
+  </script>
+</body>
+</html>

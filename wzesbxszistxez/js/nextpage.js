@@ -49,15 +49,15 @@ function navigateTo(url) {
 // 为导航按钮绑定点击事件
 const nextPage = document.getElementById("next-page");
 if (nextPage) {
-  nextPage.addEventListener("click", () => navigateTo("content.html"));
+  nextPage.addEventListener("click", () => navigateTo("dxa1taa3svect1.html"));
 }
 
 const HomePage = document.getElementById("goHome");
 if (HomePage) {
-  HomePage.addEventListener("click", () => navigateTo("website.html"));
+  HomePage.addEventListener("click", () => navigateTo("saeca3r1cxh8bdo2x1.html"));
 }
 
 const AboutPage = document.getElementById("goAbout");
 if (AboutPage) {
-  AboutPage.addEventListener("click", () => navigateTo("website.html#about"));
+  AboutPage.addEventListener("click", () => navigateTo("saeca3r1cxh8bdo2x1.html#about"));
 }
