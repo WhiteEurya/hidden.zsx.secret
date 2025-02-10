@@ -10,8 +10,7 @@ const fileSystem = {
 
 // 文件访问密码
 const filePasswords = {
-  "众生相的真相.docx": "truth123",
-  "认知留存分析实验细则.docx": "analysis456",
+  "认知留存分析实验细则.docx": "1873",
 };
 
 // 用户登录信息

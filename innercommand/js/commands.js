@@ -11,7 +11,6 @@ const bootMessages = [
   "Checking disk: OK",
   "Starting system services...",
   "System boot successful.",
-  ""
 ];
 
 let isBootComplete = false; // 标记是否完成开机动画
