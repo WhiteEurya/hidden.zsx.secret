@@ -19,7 +19,7 @@ export default function handler(req, res) {
       const targetUrl = `${baseUrl}${input}.html`;
   
       // 模拟记录检查逻辑（您可以替换为真实的数据库或文件检查逻辑）
-      const existingRecords = ["DG-161211", "DG-180904", "DG-190824", "DG-200716", "DG-220924", "DG-240413"]; // 示例存在的记录
+      const existingRecords = ["DG-161211", "DG-180904", "DG-190824", "DG-200716", "DG-220924", "DG-240413", "历史真实性研究报告"]; // 示例存在的记录
   
       if (existingRecords.includes(input)) {
         // 如果记录存在，返回跳转 URL
