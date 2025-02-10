@@ -1,5 +1,5 @@
-import fs from "fs";
 import path from "path";
+import fs from "fs";
 
 const fileSystem = {
   "/": ["usr", "data", "logs", ".sys_config", "README.md"],
@@ -117,11 +117,18 @@ export default function handler(req, res) {
 }
 
 function downloadFile(fileName, res) {
-  const filePath = path.join(process.cwd(), "files", fileName); // 拼接文件路径
+  const filePath = path.join(process.cwd(), "public", "files", fileName); // 将文件存放在 public/files 文件夹
   if (fs.existsSync(filePath)) {
     res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
     res.setHeader("Content-Type", "application/octet-stream");
     const fileStream = fs.createReadStream(filePath);
+
+    // 捕获文件流错误
+    fileStream.on("error", (err) => {
+      console.error("文件读取错误:", err.message);
+      res.status(500).json({ error: "文件读取失败" });
+    });
+
     return fileStream.pipe(res); // 将文件流直接返回
   } else {
     return res.status(404).json({ error: "文件不存在" });
