@@ -18,9 +18,7 @@ body {
 
   #command-line {
     display: flex;
-    visibility: hidden; /* 启动时隐藏，启动完成后显示 */
     align-items: center;
-    margin-top: 10px;
   }
 
   #user-prompt {
