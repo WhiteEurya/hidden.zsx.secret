@@ -10,6 +10,24 @@ const fileSystem = {
   "/logs": [],
 };
 
+const fileContents = {
+  "认知留存分析实验细则.docx": `认知留存分析实验细则内容：
+1. 实验背景
+2. 实验目的
+3. 实验步骤
+4. 数据分析
+...（内容省略）...
+`,
+  "众生相的真相.docx": `众生相的真相内容：
+这是一个文档的内容，描述了众生相的真相。
+详细内容如下：
+- 第一部分
+- 第二部分
+- 第三部分
+...（内容省略）...
+`,
+};
+
 const filePasswords = {
   "认知留存分析实验细则.docx": "1873",
 };
@@ -43,7 +61,7 @@ export default function handler(req, res) {
       response.output = `Available commands:
   ls                - 列出当前目录
   cd <directory>    - 进入目标目录 (使用 '..' 指代上层目录)
-  access <file>     - 访问目标文件 (需输入密码下载)
+  access <file>     - 访问目标文件 (需输入密码查看)
   clear             - 清空终端`;
       break;
 
@@ -84,7 +102,8 @@ export default function handler(req, res) {
             response.output = `您正在尝试访问 '${targetFile}'，请输入密码：`;
             state.fileAccessStep = targetFile; // 设置当前正在访问的文件
           } else {
-            return downloadFile(targetFile, res); // 无需密码直接下载
+            response.output = `正在打开文件 '${targetFile}'...`;
+            response.fileContent = fileContents[targetFile] || "文件无内容"; // 返回文件内容
           }
         } else {
           response.output = `错误：文件 '${targetFile}' 不存在`;
@@ -101,7 +120,8 @@ export default function handler(req, res) {
           response.output = "已退出文件访问流程";
         } else if (filePasswords[targetFile] === cmd) {
           state.fileAccessStep = null; // 验证通过，重置状态
-          return downloadFile(targetFile, res); // 返回文件
+          response.output = `正在打开文件 '${targetFile}'...`;
+          response.fileContent = fileContents[targetFile] || "文件无内容"; // 返回文件内容
         } else {
           response.output = "密码错误，请重新输入（或输入 'exit' 退出）：";
         }
@@ -113,24 +133,6 @@ export default function handler(req, res) {
 
   response.prompt = `[${state.currentUser}] ${state.currentDirectory} > `;
   return res.status(200).json(response);
-}
-
-function downloadFile(fileName, res) {
-  const filePath = path.join(process.cwd(), "files", fileName); // 指向 files 文件夹
-  if (fs.existsSync(filePath)) {
-    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
-    res.setHeader("Content-Type", "application/octet-stream");
-    const fileStream = fs.createReadStream(filePath);
-
-    fileStream.on("error", (err) => {
-      console.error("文件读取错误:", err.message);
-      res.status(500).json({ error: "文件读取失败" });
-    });
-
-    return fileStream.pipe(res); // 返回文件流
-  } else {
-    return res.status(404).json({ error: "文件不存在" });
-  }
 }
 
 function getParentDirectory(path) {
