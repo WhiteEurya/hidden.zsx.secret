@@ -18,8 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isBootComplete = false;
 
-  // 打印到终端的函数，增加逐字打印效果
-  async function printToTerminal(text, delay = 0) {
+  /**
+   * 打印到终端的函数：逐字打印
+   * 用于启动时的加载特效
+   */
+  async function printToTerminalWithEffect(text, delay = 50) {
     const line = document.createElement("div");
     logContainer.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
@@ -30,12 +33,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /**
+   * 打印到终端的函数：直接打印
+   * 用于命令执行后的即时输出
+   */
+  function printToTerminal(text) {
+    const line = document.createElement("div");
+    line.textContent = text;
+    logContainer.appendChild(line);
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+
   function bootSequence() {
     let index = 0;
 
     function nextLine() {
       if (index < bootMessages.length) {
-        printToTerminal(bootMessages[index], 30).then(() => {
+        printToTerminalWithEffect(bootMessages[index]).then(() => {
           index++;
           setTimeout(nextLine, 300);
         });
@@ -83,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.fileContent) {
           openVimViewer(data.fileContent); // 打开 Vim 查看器
         } else {
-          await printToTerminal(data.output); // 打印 API 返回的内容
+          printToTerminal(data.output); // 立即打印 API 返回的内容
           updatePrompt(data.prompt || "[guest] / > ");
         }
       } else {
@@ -110,17 +124,18 @@ document.addEventListener("DOMContentLoaded", () => {
     vimViewer.style.display = "flex";
     vimViewer.style.flexDirection = "column";
 
+    // 将 `\n` 替换为 `<br>`，以正确显示换行
     const contentArea = document.createElement("div");
     contentArea.style.flex = "1";
     contentArea.style.overflowY = "scroll";
     contentArea.style.padding = "10px";
-    contentArea.textContent = content;
+    contentArea.innerHTML = content.replace(/\n/g, "<br>"); // 替换换行符为 HTML 的换行
 
     const commandBar = document.createElement("div");
     commandBar.style.height = "30px";
     commandBar.style.backgroundColor = "green";
     commandBar.style.color = "black";
-    commandBar.textContent = "按 : 退出";
+    commandBar.textContent = "按 :q 退出";
 
     vimViewer.appendChild(contentArea);
     vimViewer.appendChild(commandBar);
@@ -146,10 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key === "Enter") {
       const command = commandInput.textContent.trim();
       if (isBootComplete) {
-        printToTerminal(userPrompt.textContent + command).then(() => {
-          processCommand(command);
-          commandInput.textContent = ""; // 清空输入框
-        });
+        printToTerminal(userPrompt.textContent + command); // 直接打印用户输入
+        processCommand(command);
+        commandInput.textContent = ""; // 清空输入框
         event.preventDefault();
       }
     }
