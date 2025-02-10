@@ -67,11 +67,15 @@ function bootComplete() {
   // 清空终端内容
   terminal.innerHTML = ""; // 清除启动动画的日志信息
 
-  // 打印欢迎信息和提示符
+  // 打印欢迎信息
   printToTerminal("欢迎进入终端。输入 help 以获取帮助。");
-  updatePrompt();
+
+  // 更新提示符并显示输入行
+  updatePrompt(); // 显示默认提示符 "[guest] / > "
   commandLine.style.visibility = "visible"; // 显示输入行
-  commandInput.focus(); // 聚焦输入框
+
+  // 聚焦到输入框
+  commandInput.focus();
 }
 
 /**
@@ -79,7 +83,7 @@ function bootComplete() {
  * @param {string} promptText - 提示符文本
  */
 function updatePrompt(promptText = "[guest] / > ") {
-  userPrompt.textContent = promptText;
+  userPrompt.textContent = promptText; // 更新提示符的内容
 }
 
 /**
@@ -88,20 +92,17 @@ function updatePrompt(promptText = "[guest] / > ") {
  * @param {string} fileContent - 文件内容
  */
 function downloadFile(fileName, fileContent) {
-  // 创建文件的 Blob 对象
   const blob = new Blob([fileContent], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
 
-  // 创建一个临时 <a> 元素
   const a = document.createElement("a");
   a.href = url;
-  a.download = fileName; // 设置下载文件的文件名
+  a.download = fileName;
 
   document.body.appendChild(a);
-  a.click(); // 触发点击，模拟下载
+  a.click();
   document.body.removeChild(a);
 
-  // 释放 URL 对象
   URL.revokeObjectURL(url);
 }
 
@@ -130,7 +131,6 @@ async function processCommand(command) {
         printToTerminal(data.output);
       }
 
-      // 如果后端返回文件名和内容，触发下载
       if (data.fileName && data.fileContent) {
         downloadFile(data.fileName, data.fileContent);
       }
@@ -144,14 +144,14 @@ async function processCommand(command) {
   }
 }
 
-// 捕获用户输入的命令
+// 监听用户输入
 commandInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     const command = commandInput.textContent.trim();
     if (isBootComplete) {
-      printToTerminal(userPrompt.textContent + command); // 在终端中显示用户输入
+      printToTerminal(userPrompt.textContent + command); // 显示用户输入
     }
-    processCommand(command); // 处理命令
+    processCommand(command);
     commandInput.textContent = ""; // 清空输入框
     event.preventDefault();
   }
