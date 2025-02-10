@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * 打印到终端的函数：逐字打印
    * 用于启动时的加载特效
    */
-  async function printToTerminalWithEffect(text, delay = 50) {
+  async function printToTerminalWithEffect(text, delay = 40) {
     const line = document.createElement("div");
     logContainer.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     vimViewer.style.width = "100vw";
     vimViewer.style.height = "100vh";
     vimViewer.style.backgroundColor = "black";
-    vimViewer.style.color = "green";
+    vimViewer.style.color = "#00ff00";
     vimViewer.style.border = "10px solid green";
     vimViewer.style.overflow = "hidden";
     vimViewer.style.display = "flex";
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     commandBar.style.height = "30px";
     commandBar.style.backgroundColor = "green";
     commandBar.style.color = "black";
-    commandBar.textContent = "按 :q 退出";
+    commandBar.textContent = "按 : 退出";
 
     vimViewer.appendChild(contentArea);
     vimViewer.appendChild(commandBar);
