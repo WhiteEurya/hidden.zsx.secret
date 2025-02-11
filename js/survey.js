@@ -185,24 +185,27 @@ let isTransitioning = false;
 
 // 切换到下一问题
 function nextQuestion(selectedOptionIndex) {
-  // 获取容器和问题文字元素
   if (isTransitioning) return;
+
   const questionContainer = document.getElementById("question-container");
   const questionText = document.getElementById("question-text");
 
   isTransitioning = true;
-  questionContainer.classList.remove("fade-in");
-  questionContainer.classList.add("fade-out");
+  questionContainer.classList.add("fade-out"); // 添加淡出动画
 
   setTimeout(() => {
+    // 更新问题索引
     const lastQuestion = surveyData[currentQuestionIndex];
     const lastOption = lastQuestion.options[selectedOptionIndex].nextQuestion;
     currentQuestionIndex = lastOption;
 
     // 如果问卷结束，显示感谢信息
     if (currentQuestionIndex >= surveyData.length) {
-      questionText.innerText = "You have completed the survey!";
+      questionText.innerText = "您已完成问卷，谢谢您的参与！";
       questionContainer.innerHTML = ""; // 清空选项
+      questionContainer.classList.remove("fade-out");
+      questionContainer.classList.add("fade-in");
+      isTransitioning = false;
       return;
     }
 
@@ -210,20 +213,19 @@ function nextQuestion(selectedOptionIndex) {
     const currentQuestion = surveyData[currentQuestionIndex];
     questionText.innerText = currentQuestion.question;
 
-    // 清空旧选项
+    // 清空旧选项并动态生成新选项
     questionContainer.innerHTML = `
       <p class="question" id="question-text">${currentQuestion.question}</p>
     `;
 
-    // 如果是第20题，显示输入框和提交按钮
+    // 如果是最后一题，显示输入框和提交按钮
     if (currentQuestionIndex === 20) {
-      questionContainer.innerHTML = `
-        <p class="question" id="question-text">${currentQuestion.question}</p>
-        <input type="text" class="input" placeholder="请输入..." id="final-answer">
+      questionContainer.innerHTML += `
+        <input type="text" class="input" placeholder="请输入您的答案..." id="final-answer">
         <button class="submit-btn" onclick="submitFinalAnswer()">提交</button>
       `;
     } else {
-      // 动态生成新选项
+      // 动态生成选项按钮
       currentQuestion.options.forEach((option, index) => {
         const button = document.createElement("button");
         button.className = "option";
@@ -234,11 +236,12 @@ function nextQuestion(selectedOptionIndex) {
     }
 
     questionContainer.classList.remove("fade-out");
-    questionContainer.classList.add("fade-in");
+    questionContainer.classList.add("fade-in"); // 添加淡入动画
+
     setTimeout(() => {
-      isTransitioning = false;
+      isTransitioning = false; // 动画结束后允许切换
     }, 500);
-  }, 505);
+  }, 500); // 等待淡出动画结束
 }
 
 // 提交最终答案

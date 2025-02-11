@@ -80,6 +80,35 @@
       background: linear-gradient(45deg, #8a2be2, #6a5acd);
       box-shadow: 0 0 15px #8a2be2;
     }
+    @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s forwards ease-in-out;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s forwards ease-in-out;
+  }
   </style>
 </head>
 <body>
