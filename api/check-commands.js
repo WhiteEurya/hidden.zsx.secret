@@ -6,14 +6,6 @@ export default function handler(req, res) {
         return res.status(400).json({ message: "无效的输入，请重新输入。" });
       }
   
-      // 特殊指令处理
-      if (input === "96202-2686LaFin") {
-        return res.status(200).json({
-          redirect: true,
-          url: "/i3n1n4e1r5c9o2m6m2a7n1d/command.html", // 指向特殊指令的页面
-        });
-      }
-  
       // 检查记录编号是否存在
       const baseUrl = "https://www.invisib1emem0ry.icu/wzesbxszistxez/logs/"; // 替换为实际的基础 URL
       const targetUrl = `${baseUrl}${input}.html`;
