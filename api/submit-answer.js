@@ -9,7 +9,7 @@ export default function handler(req, res) {
       if (answer === correctAnswer) {
         return res.status(200).json({
           correct: true,
-          redirectUrl: "https://www.invisib1emem0ry.icu/i3n1n4e1r5c9o2m6m2a7n1d/commands.html", // 正确答案跳转地址
+          redirectUrl: "https://www.invisib1emem0ry.icu/i3n1n4e1r5c9o2m6m2a7n1d/command.html", // 正确答案跳转地址
         });
       } else {
         return res.status(200).json({
