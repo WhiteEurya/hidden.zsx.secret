@@ -1,1 +1,8 @@
-
+{
+  "rewrites": [
+    {
+      "source": "/rwerbrk1nvnv0ah",
+      "destination": "/rwerbrk1nvnv0ah.html"
+    }
+  ]
+}
