@@ -3,7 +3,7 @@ export default function handler(req, res) {
       const { answer } = req.body;
   
       // 预定义正确答案
-      const correctAnswer = "96202-2686LaFin"; // 替换为你的正确答案
+      const correctAnswer = "96202-2686fr0g"; // 替换为你的正确答案
   
       // 判断用户答案是否正确
       if (answer === correctAnswer) {
