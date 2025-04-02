@@ -1,7 +1,7 @@
 export default function handler(req, res) {
     // 预设的正确密码
-    const CORRECT_USERNAME = 'OBLIV';
-    const CORRECT_PASSWORD = 'OBLIV';
+    const CORRECT_USERNAME = 'Nietzsche';
+    const CORRECT_PASSWORD = 'Kp7#mR8z!vQ2';
 
     if (req.method === 'POST') {
         

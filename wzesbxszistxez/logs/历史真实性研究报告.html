@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../assets/icon.png" type="image/x-icon">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>众生相心理研究中心</title>
+</head>
+<body class="particle-page">
+  <!-- 过渡遮罩层 -->
+  <div id="transition-cover" class="hidden"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <img src="../../assets/logo.png" alt="logo" height="54" width="250">
+    </div>
+    <div class="nav-right">
+      <a id="goHome">主页</a>
+      <a id="last-page">实验记录总览</a>
+    </div>
+  </nav>
+
+  <!-- 实验文档悬浮窗 -->
+  <div class = "hero">
+    <div class="modal">
+        <div class="document-list" id="document-list">
+
+            <div class="text-title">
+               <p>文档编号：DG-H-A-2：历史真实性研究报告</p>
+
+            </div>
+
+            <div class="text-writer">
+                <p>撰写者：奥康普尼</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="formal-text">
+              
+              <p>写在前面：我真的是服了，为什么这种一看就是N17研究领域的事情交给我。我一个搞药剂的怎么可能会做这种研究啊！</p>
+              
+              <p>言归正传，本次研究为《历史真实性研究报告》（下称1号报告）的后续研究，由于1号报告中存在部分技术性问题，以及最新对秦始皇陵的考古发现与1号报告中的结论存在巨大偏差，现撰写《历史真实性研究2号报告》以代替1号报告。</p>
+              
+              <p>本次研究分别从“记忆”、“文献”、“遗迹”三个最主要研究的方面入手，探究是否能保证历史的真实性。</p>
+              
+              <p><strong>记忆：</strong>这部分确实不是我擅长的领域，在咨询了N17后，决定从“曼德拉效应”入手，我们将一部分完全能够考证的错误资料投放到各个社群，如“皮卡丘尾巴的颜色”、“科比有没有买坠机保险”等。在经过数个月的发酵之后，我们重新从这些社群中采访，发现绝大多数社群对于能够直接考证的记忆出现了偏差。因此我们得出结论，一个人或者一群人的记忆从历史真实性的角度来说没有任何的参考价值。</p>
+              
+              <p><strong>文献：</strong>在众生相图书馆中检索“明”，得到的923份史料记载中，无论是否权威、是否被承认，记载内容最为相近的内容重合度仅为70%左右，而内容最为不同的重合度不到15%。我只能说很难把两份差距比人类和香蕉基因差别还大的文献中的任何一份作为真实的历史记载。</p>
+              
+              <p><strong>遗迹：</strong>这不是巧了吗，前段时间对秦始皇陵的考古就是我带队的，毕竟这种掘别人坟的事好像只有我感兴趣。当时从里面发掘出了一块巨大无比的石碑，上面刻了数百位赢姓人名，在每个人名下方还有一段年代，例如“秦历XX年~秦历XX年”，第一个名字是嬴政，最后一个名字是赢胡亥。根据上面年代来看，这数百位人名应该是一代一代的帝王，而那段年代则是这些帝王的统治年代。如果这个石碑是真的话，那就说明秦朝和我们所熟知的样子完全不同。但同时，更早发掘的项羽墓里面则有证据明确提到了秦朝为二世而亡。</p>
+              
+              <p>说真的，这些记忆、文献、遗迹基本上都在互相反驳对方，在我们团队的一致表决下，我们认为所有的历史研究只有部分的历史真实性，或者说完全没有历史真实性可言。</p>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="annotations">
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+
+              <h1>批注 By </h1>
+              <p></p>
+              <p></p>
+            </div>
+
+            <div class="seperator"></div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+    <!-- 提示框 -->
+    <div class="alert" id="alert-box" style="display: none;">
+        <p>权限不足，无法访问该文档。</p>
+      </div>
+
+    <!-- 导航栏按键绑定 -->
+    <script src="js/nextpage.js"></script>
+
+
+  <script>
+    window.addEventListener("load", () => {
+    const modal = document.querySelector(".modal");
+    modal.classList.add("show"); // 添加显示类
+    });
+
+    window.addEventListener("beforeunload", () => {
+    const modal = document.querySelector(".modal");
+    if (modal) {
+        modal.classList.remove("show"); // 移除显示类
+        modal.style.display = "none"; // 强制隐藏
+    }
+    });
+  </script>
+</body>
+</html>
