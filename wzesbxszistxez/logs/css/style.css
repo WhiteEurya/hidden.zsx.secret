@@ -168,6 +168,13 @@
     padding: 10px;
     font-size: 18px;
   }
+
+  .annotations a{
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+    color: red;
+  }
   
   /* 单个文档样式 */
   .document {
